@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Maison Farès — Fine Dining Alexandria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --noir:#0C0A08;--warm:#1A1410;--cream:#F5EFE0;--sand:#E8D5A3;
+    --gold:#C9A87C;--gold-light:#E8C97A;--rust:#8B4513;--text:#2C1A0E;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;background:var(--noir);color:var(--cream);overflow-x:hidden}
+  h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 56px;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s}
+  nav.scrolled{background:rgba(12,10,8,0.92);backdrop-filter:blur(24px);padding:16px 56px;border-bottom:1px solid rgba(201,168,124,0.1)}
+  .nav-brand{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--gold);letter-spacing:0.12em}
+  .nav-links{display:flex;gap:36px;list-style:none}
+  .nav-links a{font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,239,224,0.65);text-decoration:none;transition:color 0.25s}
+  .nav-links a:hover{color:var(--gold)}
+  .nav-reserve{padding:11px 28px;border:1px solid rgba(201,168,124,0.5);color:var(--gold);border-radius:100px;font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.3s}
+  .nav-reserve:hover{background:var(--gold);color:var(--noir)}
+
+  /* HERO — cinematic full-bleed */
+  .hero{min-height:100vh;position:relative;display:flex;align-items:flex-end;padding:0 56px 80px;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#3D1C02 0%,#1A0D04 35%,#0C0A08 70%,#0C0A08 100%)}
+  .hero-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 65% 30%,rgba(201,168,124,0.14) 0%,transparent 70%)}
+  .hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%}
+  .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+  .hero-line{width:40px;height:1px;background:var(--gold)}
+  .hero-eyebrow span{font-size:10px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);opacity:0.8}
+  .hero h1{font-size:clamp(52px,7vw,96px);font-weight:400;line-height:0.95;color:var(--cream);margin-bottom:32px;letter-spacing:-0.02em}
+  .hero h1 em{font-style:italic;color:var(--gold-light)}
+  .hero-sub{font-size:15px;line-height:1.8;color:rgba(245,239,224,0.6);max-width:480px;margin-bottom:48px}
+  .hero-actions{display:flex;gap:20px;align-items:center}
+  .btn-gold{padding:16px 36px;background:var(--gold);color:var(--noir);border-radius:100px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all 0.35s}
+  .btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 12px 36px rgba(201,168,124,0.35)}
+  .btn-outline{padding:16px 36px;border:1px solid rgba(245,239,224,0.2);color:rgba(245,239,224,0.8);border-radius:100px;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all 0.3s}
+  .btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+  /* floating info cards */
+  .hero-info{position:absolute;right:56px;top:50%;transform:translateY(-50%);z-index:2;display:flex;flex-direction:column;gap:16px}
+  .info-chip{padding:14px 20px;background:rgba(201,168,124,0.07);border:1px solid rgba(201,168,124,0.18);border-radius:14px;backdrop-filter:blur(16px)}
+  .info-chip-label{font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0.65;display:block;margin-bottom:4px}
+  .info-chip-val{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--cream)}
+
+  /* MARQUEE */
+  .marquee-wrap{padding:20px 0;background:var(--gold);overflow:hidden}
+  .marquee-track{display:flex;gap:0;animation:marquee 18s linear infinite;white-space:nowrap}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .marquee-item{display:inline-flex;align-items:center;gap:20px;padding:0 32px;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--noir)}
+  .marquee-dot{width:4px;height:4px;border-radius:50%;background:var(--noir);opacity:0.4}
+
+  /* MENU PREVIEW */
+  .menu{padding:120px 56px;background:var(--warm)}
+  .menu-inner{max-width:1200px;margin:0 auto}
+  .menu-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:72px}
+  .menu-label{font-size:10px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px}
+  .menu h2{font-size:clamp(36px,4vw,58px);font-weight:500;color:var(--cream);line-height:1.1}
+  .menu-desc{font-size:14px;line-height:1.85;color:rgba(245,239,224,0.55);align-self:end}
+  .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .menu-card{border-radius:20px;overflow:hidden;background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,124,0.1);transition:all 0.4s;cursor:pointer}
+  .menu-card:hover{border-color:rgba(201,168,124,0.35);transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,0.5)}
+  .menu-card-img{height:220px;display:flex;align-items:center;justify-content:center;font-size:72px;position:relative;overflow:hidden}
+  .menu-card-img-1{background:linear-gradient(135deg,#2D1B0E,#5C3317)}
+  .menu-card-img-2{background:linear-gradient(135deg,#1A2D1A,#2D5C2D)}
+  .menu-card-img-3{background:linear-gradient(135deg,#1A1A2D,#2D2D5C)}
+  .menu-card-body{padding:24px}
+  .menu-card-cat{font-size:9px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);opacity:0.7;margin-bottom:8px}
+  .menu-card-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--cream);margin-bottom:8px}
+  .menu-card-desc{font-size:13px;line-height:1.65;color:rgba(245,239,224,0.5)}
+  .menu-card-price{margin-top:16px;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold)}
+
+  /* AMBIANCE */
+  .ambiance{padding:120px 56px;background:var(--noir);text-align:center}
+  .ambiance-inner{max-width:800px;margin:0 auto}
+  .ambiance-label{font-size:10px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:16px}
+  .ambiance h2{font-size:clamp(38px,5vw,66px);font-weight:400;color:var(--cream);line-height:1.1;margin-bottom:24px}
+  .ambiance h2 em{font-style:italic;color:var(--gold-light)}
+  .ambiance p{font-size:15px;line-height:1.85;color:rgba(245,239,224,0.6);margin-bottom:48px}
+  .ambiance-imgs{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:16px;margin-bottom:60px}
+  .amb-img{border-radius:16px;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;font-size:60px}
+  .amb-img:nth-child(1){background:linear-gradient(160deg,#2D1B0E,#8B4513);transform:translateY(24px)}
+  .amb-img:nth-child(2){background:linear-gradient(160deg,#1A0D04,#5C3317);aspect-ratio:3/5}
+  .amb-img:nth-child(3){background:linear-gradient(160deg,#2D200E,#7A5C2E);transform:translateY(24px)}
+
+  /* RESERVE */
+  .reserve{padding:100px 56px;background:linear-gradient(135deg,#1A1008,#2D1B0E)}
+  .reserve-inner{max-width:640px;margin:0 auto;text-align:center}
+  .reserve-label{font-size:10px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:16px}
+  .reserve h2{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4.5vw,58px);font-weight:500;color:var(--cream);line-height:1.1;margin-bottom:20px}
+  .reserve p{font-size:14px;line-height:1.8;color:rgba(245,239,224,0.55);margin-bottom:44px}
+  .reserve-form{display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:left;margin-bottom:24px}
+  .form-field{display:flex;flex-direction:column;gap:8px}
+  .form-field label{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(201,168,124,0.6)}
+  .form-field input,.form-field select{padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,124,0.18);border-radius:12px;color:var(--cream);font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border-color 0.25s}
+  .form-field input:focus,.form-field select:focus{border-color:rgba(201,168,124,0.5)}
+  .form-field select option{background:var(--warm)}
+  .reserve-submit{width:100%;padding:16px;background:var(--gold);color:var(--noir);border:none;border-radius:100px;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.3s}
+  .reserve-submit:hover{background:var(--gold-light);transform:translateY(-2px)}
+
+  /* FOOTER */
+  footer{padding:48px 56px;background:var(--noir);border-top:1px solid rgba(201,168,124,0.08);display:flex;align-items:center;justify-content:space-between}
+  .footer-brand{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold);letter-spacing:0.12em}
+  .footer-copy{font-size:11px;color:rgba(245,239,224,0.3);letter-spacing:0.05em}
+  .footer-power{font-size:11px;color:rgba(201,168,124,0.5)}
+
+  @media(max-width:900px){
+    nav,.hero,.menu,.ambiance,.reserve,footer{padding-left:24px;padding-right:24px}
+    .hero-info{display:none}
+    .menu-header{grid-template-columns:1fr}
+    .menu-grid{grid-template-columns:1fr}
+    .ambiance-imgs{grid-template-columns:1fr}
+    .amb-img{transform:none !important}
+    .reserve-form{grid-template-columns:1fr}
+    footer{flex-direction:column;gap:12px;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <div class="nav-brand">Maison Farès</div>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#ambiance">Ambiance</a></li>
+    <li><a href="#reserve">Reserve</a></li>
+  </ul>
+  <a href="#reserve" class="nav-reserve">Reserve a Table</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-info">
+    <div class="info-chip"><span class="info-chip-label">Location</span><span class="info-chip-val">Stanley, Alexandria</span></div>
+    <div class="info-chip"><span class="info-chip-label">Hours</span><span class="info-chip-val">12pm – 12am</span></div>
+    <div class="info-chip"><span class="info-chip-label">Reservations</span><span class="info-chip-val">WhatsApp Only</span></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><div class="hero-line"></div><span>Fine Dining · Alexandria Since 2018</span></div>
+    <h1>Where Every<br/>Meal Becomes<br/>a <em>Memory.</em></h1>
+    <p class="hero-sub">Authentic Mediterranean cuisine elevated by modern technique. Seasonal ingredients, warm hospitality, and a setting that invites you to slow down and savor.</p>
+    <div class="hero-actions">
+      <a href="#reserve" class="btn-gold">Reserve Your Table</a>
+      <a href="#menu" class="btn-outline">View Our Menu</a>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Fine Dining<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Mediterranean Cuisine<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Stanley · Alexandria<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Seafood · Mezze · Grill<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Private Events<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Rooftop Terrace<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Fine Dining<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Mediterranean Cuisine<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Stanley · Alexandria<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Seafood · Mezze · Grill<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Private Events<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Rooftop Terrace<span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<section class="menu" id="menu">
+  <div class="menu-inner">
+    <div class="menu-header">
+      <div><span class="menu-label">Culinary Journey</span><h2>Crafted With<br/>Passion &amp; Precision</h2></div>
+      <p class="menu-desc">Every dish tells a story — from the fishermen's catch at dawn to the herbs grown on our terrace. Our menu changes with the seasons to honor the best of Egyptian and Mediterranean produce.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="menu-card-img menu-card-img-1">🦞</div>
+        <div class="menu-card-body">
+          <div class="menu-card-cat">Signature</div>
+          <div class="menu-card-name">Grilled Alexandria Lobster</div>
+          <p class="menu-card-desc">Corniche-caught lobster, herb butter, saffron risotto, microgreens.</p>
+          <div class="menu-card-price">EGP 680</div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-img menu-card-img-2">🥗</div>
+        <div class="menu-card-body">
+          <div class="menu-card-cat">Starters</div>
+          <div class="menu-card-name">Levantine Mezze Platter</div>
+          <p class="menu-card-desc">Hummus, mutabbal, tabbouleh, fattoush, warm pita. Serves two.</p>
+          <div class="menu-card-price">EGP 245</div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-img menu-card-img-3">🍮</div>
+        <div class="menu-card-body">
+          <div class="menu-card-cat">Desserts</div>
+          <div class="menu-card-name">Om Ali au Crème Brûlée</div>
+          <p class="menu-card-desc">Classic Egyptian Om Ali reimagined with a French crème brûlée finish.</p>
+          <div class="menu-card-price">EGP 155</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ambiance" id="ambiance">
+  <div class="ambiance-inner">
+    <span class="ambiance-label">The Experience</span>
+    <h2>A Space Made<br/>for <em>Connection.</em></h2>
+    <p>Our dining rooms blend exposed stone, warm candlelight, and sweeping sea views into an atmosphere that feels simultaneously intimate and grand. Whether you're celebrating a milestone or simply escaping the city — Maison Farès is your refuge.</p>
+    <div class="ambiance-imgs">
+      <div class="amb-img">🕯️</div>
+      <div class="amb-img">🌊</div>
+      <div class="amb-img">🌿</div>
+    </div>
+    <a href="#reserve" class="btn-gold">Experience It Yourself</a>
+  </div>
+</section>
+
+<section class="reserve" id="reserve">
+  <div class="reserve-inner">
+    <span class="reserve-label">Reservations</span>
+    <h2>Book Your Table</h2>
+    <p>We recommend reserving at least 48 hours in advance, especially for weekends and private dining rooms.</p>
+    <div class="reserve-form">
+      <div class="form-field"><label>Full Name</label><input type="text" placeholder="Your name" /></div>
+      <div class="form-field"><label>Phone / WhatsApp</label><input type="tel" placeholder="+20 1xx xxx xxxx" /></div>
+      <div class="form-field"><label>Date</label><input type="date" /></div>
+      <div class="form-field"><label>Party Size</label>
+        <select>
+          <option>2 guests</option><option>3–4 guests</option>
+          <option>5–8 guests</option><option>Private event (9+)</option>
+        </select>
+      </div>
+    </div>
+    <button class="reserve-submit" onclick="window.open('https://wa.me/201554347348','_blank')">Confirm via WhatsApp →</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Maison Farès</div>
+  <div class="footer-copy">© 2026 Maison Farès. Stanley, Alexandria, Egypt.</div>
+  <div class="footer-power">Crafted by <strong style="color:#C9A87C">Arcadia Rise</strong></div>
+</footer>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>
+</body>
+</html>

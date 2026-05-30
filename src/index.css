@@ -1,0 +1,198 @@
+/* Display serif (headings) + Arabic faces from Google; Helvetica Neue is self-hosted below */
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;0,6..96,900;1,6..96,400;1,6..96,600&family=Tajawal:wght@300;400;500;700;800&display=swap');
+@import "tailwindcss";
+
+/* ─── Helvetica Neue (self-hosted) ───────────────────── */
+@font-face{font-family:"Helvetica Neue LT";src:url("/fonts/helvetica/HelveticaNeueThin.otf") format("opentype");font-weight:100;font-style:normal;font-display:swap}
+@font-face{font-family:"Helvetica Neue LT";src:url("/fonts/helvetica/HelveticaNeueThinItalic.otf") format("opentype");font-weight:100;font-style:italic;font-display:swap}
+@font-face{font-family:"Helvetica Neue LT";src:url("/fonts/helvetica/HelveticaNeueUltraLight.otf") format("opentype");font-weight:200;font-style:normal;font-display:swap}
+@font-face{font-family:"Helvetica Neue LT";src:url("/fonts/helvetica/HelveticaNeueUltraLightItalic.otf") format("opentype");font-weight:200;font-style:italic;font-display:swap}
+@font-face{font-family:"Helvetica Neue LT";src:url("/fonts/helvetica/HelveticaNeueLight.otf") format("opentype");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Helvetica Neue LT";src:url("/fonts/helvetica/HelveticaNeueLightItalic.otf") format("opentype");font-weight:300;font-style:italic;font-display:swap}
+@font-face{font-family:"Helvetica Neue LT";src:url("/fonts/helvetica/HelveticaNeueRoman.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Helvetica Neue LT";src:url("/fonts/helvetica/HelveticaNeueItalic.ttf") format("truetype");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Helvetica Neue LT";src:url("/fonts/helvetica/HelveticaNeueMedium.otf") format("opentype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Helvetica Neue LT";src:url("/fonts/helvetica/HelveticaNeueMediumItalic.otf") format("opentype");font-weight:500;font-style:italic;font-display:swap}
+@font-face{font-family:"Helvetica Neue LT";src:url("/fonts/helvetica/HelveticaNeueBold.otf") format("opentype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Helvetica Neue LT";src:url("/fonts/helvetica/HelveticaNeueBoldItalic.otf") format("opentype");font-weight:700;font-style:italic;font-display:swap}
+@font-face{font-family:"Helvetica Neue LT";src:url("/fonts/helvetica/HelveticaNeueHeavy.otf") format("opentype");font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:"Helvetica Neue LT";src:url("/fonts/helvetica/HelveticaNeueBlack.otf") format("opentype");font-weight:900;font-style:normal;font-display:swap}
+@font-face{font-family:"Helvetica Neue LT";src:url("/fonts/helvetica/HelveticaNeueBlackItalic.otf") format("opentype");font-weight:900;font-style:italic;font-display:swap}
+
+@theme {
+  --color-bg-brand: #0A0A0A;
+  --color-primary-gold: #C9A87C;
+  --color-gold-light: #E8C97A;
+  --color-dark-bronze: #8B6914;
+  --color-text-brand: #F5F0E8;
+
+  /* Display = Bodoni Moda (high-contrast editorial). Body/UI = Helvetica Neue. */
+  --font-serif-luxury: "Bodoni Moda", "Amiri", serif;
+  --font-sans-luxury: "Helvetica Neue LT", "Helvetica Neue", "Tajawal", sans-serif;
+
+  /* Override Tailwind's built-in font utilities so font-serif/font-sans map to the new pairing */
+  --font-serif: "Bodoni Moda", "Amiri", serif;
+  --font-sans: "Helvetica Neue LT", "Helvetica Neue", "Tajawal", sans-serif;
+  --font-mono: "Helvetica Neue LT", ui-monospace, monospace;
+}
+
+/* ─── Base ──────────────────────────────────────────── */
+
+html {
+  scroll-behavior: auto; /* Lenis handles scroll behaviour */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: #0A0A0A;
+  color: #F5F0E8;
+  font-family: "Helvetica Neue LT", "Helvetica Neue", "Tajawal", sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  overflow-x: hidden;
+}
+
+h1,h2,h3,h4 {
+  font-family: "Bodoni Moda","Amiri",serif;
+}
+
+/* ─── Arabic / RTL ───────────────────────────────────────
+   Bodoni & Helvetica have no Arabic glyphs (→ tofu/garbled),
+   and Latin letter-spacing breaks Arabic's cursive joins
+   (→ "random letters"). Force Arabic faces + normal spacing. */
+[dir="rtl"] {
+  font-family: "Tajawal", sans-serif;
+}
+/* body / UI text → Tajawal */
+[dir="rtl"] .font-sans-luxury,
+[dir="rtl"] .font-mono,
+[dir="rtl"] p,
+[dir="rtl"] span,
+[dir="rtl"] a,
+[dir="rtl"] button,
+[dir="rtl"] li,
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select,
+[dir="rtl"] label {
+  font-family: "Tajawal", sans-serif;
+}
+/* display / headings → Amiri (a real Arabic serif) */
+[dir="rtl"] .font-serif,
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4 {
+  font-family: "Amiri", "Tajawal", serif !important;
+}
+/* CRITICAL: kill letter-spacing for Arabic — it severs cursive joins */
+[dir="rtl"] * {
+  letter-spacing: normal !important;
+}
+/* Arabic needs more vertical breathing room than the tight Latin leading */
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3,
+[dir="rtl"] .font-serif {
+  line-height: 1.35 !important;
+}
+/* gold gradient text clips fine on Amiri, but ensure it stays visible */
+[dir="rtl"] .text-shimmer { line-height: 1.4 !important; }
+
+/* ─── Scrollbar ──────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 5px }
+::-webkit-scrollbar-track { background: #0A0A0A }
+::-webkit-scrollbar-thumb { background: rgba(201,168,124,0.2); border-radius: 4px }
+::-webkit-scrollbar-thumb:hover { background: rgba(232,201,122,0.45) }
+::selection { background: #8B6914; color: #F5F0E8 }
+
+/* ─── Glass panel ────────────────────────────────────── */
+
+.glass-panel {
+  background: linear-gradient(135deg,rgba(255,255,255,0.04) 0%,rgba(255,255,255,0.01) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201,168,124,0.14);
+}
+.glass-panel-glow { box-shadow: 0 8px 32px rgba(0,0,0,0.3) }
+.glass-panel-hover { transition: all 0.4s cubic-bezier(0.16,1,0.3,1) }
+.glass-panel-hover:hover {
+  border-color: rgba(232,201,122,0.32);
+  box-shadow: 0 16px 48px rgba(201,168,124,0.15), 0 8px 32px rgba(0,0,0,0.4);
+  transform: translateY(-5px);
+}
+
+/* ─── Keyframes ──────────────────────────────────────── */
+
+@keyframes shimmer {
+  0%   { background-position: -200% center }
+  100% { background-position: 200% center }
+}
+
+@keyframes glow-pulse {
+  0%,100% { opacity: 0.55; filter: blur(60px) }
+  50%      { opacity: 1;    filter: blur(80px) }
+}
+
+@keyframes float-1 {
+  0%,100% { transform: translateY(0) rotate(0deg);   opacity:.5 }
+  33%     { transform: translateY(-8px) rotate(10deg); opacity:.8 }
+  66%     { transform: translateY(4px)  rotate(-5deg); opacity:.4 }
+}
+@keyframes float-2 {
+  0%,100% { transform: translateY(0) rotate(0deg);    opacity:.4 }
+  50%     { transform: translateY(-12px) rotate(15deg); opacity:.7 }
+}
+@keyframes float-3 {
+  0%,100% { transform: translateY(0);  opacity:.2 }
+  40%     { transform: translateY(-6px); opacity:.5 }
+  80%     { transform: translateY(3px);  opacity:.15 }
+}
+@keyframes pulse-slow {
+  0%,100% { opacity:.08; transform:scale(1) }
+  50%     { opacity:.18; transform:scale(1.08) }
+}
+@keyframes gyro-1 { from { transform:rotateX(0deg) rotateY(0deg) }   to { transform:rotateX(360deg) rotateY(0deg) } }
+@keyframes gyro-2 { from { transform:rotateX(0deg) rotateY(0deg) rotateZ(0deg) }  to { transform:rotateX(0deg) rotateY(360deg) rotateZ(0deg) } }
+@keyframes gyro-3 { from { transform:rotateX(60deg) rotateZ(0deg) }   to { transform:rotateX(60deg) rotateZ(360deg) } }
+@keyframes gyro-4 { from { transform:rotateX(120deg) rotateY(0deg) }  to { transform:rotateX(120deg) rotateY(-360deg) } }
+
+/* ─── Text shimmer ───────────────────────────────────── */
+
+.text-shimmer {
+  background: linear-gradient(120deg, #8B6914 0%, #C9A87C 28%, #F5E6A3 50%, #C9A87C 72%, #8B6914 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ─── Aurora orbs ────────────────────────────────────── */
+
+.aurora-orb { position:absolute; border-radius:50%; pointer-events:none; animation:glow-pulse 6s ease-in-out infinite }
+.aurora-orb-1 { top:20%; left:50%; transform:translateX(-50%); width:min(700px,80vw); height:min(700px,80vw); background:radial-gradient(circle,rgba(139,105,20,.09) 0%,transparent 65%); animation-delay:0s }
+.aurora-orb-2 { bottom:5%; right:-5%; width:min(400px,50vw); height:min(400px,50vw); background:radial-gradient(circle,rgba(201,168,124,.06) 0%,transparent 65%); animation-delay:2s }
+.aurora-orb-3 { top:50%; left:-8%; width:min(320px,40vw); height:min(320px,40vw); background:radial-gradient(circle,rgba(232,201,122,.05) 0%,transparent 65%); animation-delay:4s }
+
+/* ─── Gyroscope rings ────────────────────────────────── */
+
+.gyro-ring { position:absolute; border-radius:50%; border:1px solid rgba(201,168,124,.22); pointer-events:none; transform-style:preserve-3d }
+.gyro-ring-1 { inset:12px; border-color:rgba(232,201,122,.28); animation:gyro-1 18s linear infinite }
+.gyro-ring-2 { inset:6px;  border-color:rgba(201,168,124,.16); animation:gyro-2 28s linear infinite reverse }
+.gyro-ring-3 { inset:24px; border-color:rgba(232,201,122,.20); animation:gyro-3 22s linear infinite }
+.gyro-ring-4 { inset:36px; border-color:rgba(201,168,124,.12); animation:gyro-4 35s linear infinite reverse }
+
+/* ─── Floating sparkles ──────────────────────────────── */
+
+.animate-float-1   { animation: float-1   4.5s ease-in-out infinite }
+.animate-float-2   { animation: float-2   6s   ease-in-out infinite }
+.animate-float-3   { animation: float-3   8s   ease-in-out infinite }
+.animate-pulse-slow{ animation: pulse-slow 5s   ease-in-out infinite }
+
+/* ─── Reduced motion ─────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .text-shimmer    { animation:none; background-position:0 center }
+  .gyro-ring       { animation:none !important }
+  .aurora-orb      { animation:none !important }
+  .animate-float-1,.animate-float-2,.animate-float-3,.animate-pulse-slow { animation:none !important }
+}

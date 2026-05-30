@@ -1,0 +1,19 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# temp QA / scratch folders
+_imgcheck/
+_svc/
+.vite/
+Thumbs.db
+
+# editor/agent tooling (not part of the website)
+.claude/
+__pycache__/
+*.pyc

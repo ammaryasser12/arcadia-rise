@@ -1,0 +1,6 @@
+{
+  "name": "Arcadia Rise",
+  "description": "Modern high-end digital agency in Alexandria, Egypt building premium websites with glassmorphic designs, arabic support, and gold accents.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
