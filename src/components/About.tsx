@@ -88,41 +88,30 @@ export default function About({ currentLanguage }: AboutProps) {
           </motion.div>
         </div>
 
-        {/* Giant pull-quote — clip reveal */}
+        {/* Giant pull-quote — simple fade-up (always settles visible) */}
         <motion.div
           style={{ y: quoteY }}
           className="max-w-5xl mx-auto text-center mb-20"
         >
-          <div className="overflow-hidden mb-2">
-            <motion.div
-              initial={{ y: '105%' }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span
+              className="block font-serif font-bold text-[#F5F0E8] leading-[1.1] tracking-[-0.02em] mb-2"
+              style={{ fontSize: 'clamp(34px, 6vw, 88px)' }}
             >
-              <span
-                className="block font-serif font-bold text-[#F5F0E8] leading-[0.92] tracking-[-0.03em]"
-                style={{ fontSize: 'clamp(36px, 6.5vw, 96px)' }}
-              >
-                {currentLanguage === 'en' ? '"Built to put you' : '"وُجدنا لنضع'}
-              </span>
-            </motion.div>
-          </div>
-          <div className="overflow-hidden mb-2">
-            <motion.div
-              initial={{ y: '105%' }}
-              whileInView={{ y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 1.1, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
+              {currentLanguage === 'en' ? '"Built to put you' : '"وُجدنا لنضع'}
+            </span>
+            <span
+              className="block font-serif font-bold text-shimmer leading-[1.1] tracking-[-0.02em]"
+              style={{ fontSize: 'clamp(34px, 6vw, 88px)' }}
             >
-              <span
-                className="block font-serif font-bold text-shimmer leading-[0.92] tracking-[-0.03em]"
-                style={{ fontSize: 'clamp(36px, 6.5vw, 96px)' }}
-              >
-                {currentLanguage === 'en' ? 'on the map."' : 'على الخريطة."'}
-              </span>
-            </motion.div>
-          </div>
+              {currentLanguage === 'en' ? 'on the map."' : 'مشروعك على الخريطة."'}
+            </span>
+          </motion.div>
 
           {/* Body text */}
           <motion.p
