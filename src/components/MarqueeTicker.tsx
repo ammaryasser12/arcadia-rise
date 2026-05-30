@@ -5,7 +5,7 @@ const items = [
   'Website Design', 'Google Maps SEO', 'Brand Identity',
   'Social Media', 'E-Commerce', 'Landing Pages',
   'Mobile-First', 'Fast Delivery', '14-Day Launch',
-  'Alexandria', 'Egypt', 'Arabic & English',
+  'Worldwide', 'Egypt', 'Arabic & English',
 ];
 
 export default function MarqueeTicker() {

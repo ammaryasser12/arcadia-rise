@@ -30,7 +30,7 @@ export default function App() {
     document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = language;
     document.title = language === 'ar'
-      ? 'ARCADIA RISE | تصميم مواقع ومتاجر فاخرة بالإسكندرية'
+      ? 'ARCADIA RISE | تصميم مواقع ومتاجر فاخرة'
       : 'Arcadia Rise | Luxury Digital Web Agency in Egypt';
   }, [language]);
 

@@ -97,7 +97,7 @@ export default function Hero({ currentLanguage, introComplete }: HeroProps) {
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[#E8C97A] animate-pulse" />
               <span className="text-[10px] font-mono tracking-[0.2em] text-[#C9A87C] uppercase">
-                {currentLanguage === 'en' ? "Alexandria's Premier Web Atelier" : 'الوكالة الرقمية الأولى بالإسكندرية'}
+                {currentLanguage === 'en' ? 'A Premier Digital Web Atelier' : 'وكالة رقمية فاخرة'}
               </span>
             </motion.div>
           </div>

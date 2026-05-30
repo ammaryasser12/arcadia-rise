@@ -29,7 +29,7 @@ export default function About({ currentLanguage }: AboutProps) {
     {
       icon: '⌘',
       title: currentLanguage === 'en' ? 'Our Base' : 'مقرنا',
-      body: currentLanguage === 'en' ? 'Alexandria, Egypt — serving the nation' : 'الإسكندرية، مصر — نخدم كل مصر',
+      body: currentLanguage === 'en' ? 'Based in Egypt — serving the region' : 'مقرنا مصر — نخدم المنطقة',
     },
   ];
 
@@ -82,11 +82,9 @@ export default function About({ currentLanguage }: AboutProps) {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex items-center gap-4 mb-8 font-mono text-[10px] text-[#C9A87C]/40 tracking-[0.2em] uppercase"
           >
-            <span>31.2001° N</span>
+            <span>{currentLanguage === 'en' ? 'Rooted in Egypt' : 'جذورنا في مصر'}</span>
             <div className="w-1.5 h-1.5 rounded-full bg-[#C9A87C]/25" />
-            <span>29.9187° E</span>
-            <div className="w-1.5 h-1.5 rounded-full bg-[#C9A87C]/25" />
-            <span>Alexandria, Egypt</span>
+            <span>{currentLanguage === 'en' ? 'Serving Worldwide' : 'نخدم العالم'}</span>
           </motion.div>
         </div>
 
@@ -106,7 +104,7 @@ export default function About({ currentLanguage }: AboutProps) {
                 className="block font-serif font-bold text-[#F5F0E8] leading-[0.92] tracking-[-0.03em]"
                 style={{ fontSize: 'clamp(36px, 6.5vw, 96px)' }}
               >
-                {currentLanguage === 'en' ? '"Built on the shores' : '"تأسس على شواطئ'}
+                {currentLanguage === 'en' ? '"Built to put you' : '"وُجدنا لنضع'}
               </span>
             </motion.div>
           </div>
@@ -121,7 +119,7 @@ export default function About({ currentLanguage }: AboutProps) {
                 className="block font-serif font-bold text-shimmer leading-[0.92] tracking-[-0.03em]"
                 style={{ fontSize: 'clamp(36px, 6.5vw, 96px)' }}
               >
-                {currentLanguage === 'en' ? 'of Alexandria.' : 'الإسكندرية.'}
+                {currentLanguage === 'en' ? 'on the map."' : 'على الخريطة."'}
               </span>
             </motion.div>
           </div>

@@ -113,6 +113,18 @@ export default function Pricing({ currentLanguage }: PricingProps) {
 
                 {/* Price */}
                 <div className="mb-8 pb-8 border-b border-[#C9A87C]/12">
+                  {tier.originalPrice && (
+                    <div className="flex items-center gap-2.5 mb-2">
+                      {/* old price, struck through */}
+                      <span className="font-serif text-[#F5F0E8]/35 line-through decoration-[#C9A87C]/50 decoration-1 text-lg">
+                        {tier.originalPrice[currentLanguage]}
+                      </span>
+                      {/* limited-time pill */}
+                      <span className="px-2 py-0.5 rounded-full bg-[#E8C97A]/12 border border-[#E8C97A]/35 text-[8px] font-mono tracking-[0.18em] uppercase text-[#E8C97A] whitespace-nowrap">
+                        {currentLanguage === 'en' ? 'Limited Offer' : 'عرض محدود'}
+                      </span>
+                    </div>
+                  )}
                   <div
                     className="font-serif font-bold text-[#E8C97A] leading-none mb-1"
                     style={{ fontSize: 'clamp(28px, 3.5vw, 44px)' }}
@@ -121,6 +133,11 @@ export default function Pricing({ currentLanguage }: PricingProps) {
                   </div>
                   <div className="text-[9px] font-mono tracking-wider text-[#C9A87C]/45 uppercase mt-2">
                     {tier.period[currentLanguage]}
+                    {tier.originalPrice && (
+                      <span className="text-[#E8C97A]/70 normal-case tracking-normal">
+                        {' · '}{currentLanguage === 'en' ? 'save EGP 5,000' : 'وفّر ٥,٠٠٠ ج.م'}
+                      </span>
+                    )}
                   </div>
                 </div>
 

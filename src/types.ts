@@ -44,6 +44,7 @@ export interface PricingTier {
   id: string;
   name: { en: string; ar: string };
   price: { en: string; ar: string };
+  originalPrice?: { en: string; ar: string };
   period: { en: string; ar: string };
   description: { en: string; ar: string };
   features: { en: string[]; ar: string[] };

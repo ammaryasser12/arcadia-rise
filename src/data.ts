@@ -28,8 +28,8 @@ export const services: ServiceItem[] = [
       ar: 'نضع نشاطك التجاري على خرائط جوجل وحجوزات البحث المحلي، مع إعداد الكلمات الدلالية المناسبة لتظهر لعملائك بمجرد بحثهم عن خدماتك في منطقتك الجغرافية.'
     },
     longDescription: {
-      en: 'If your business is not on Google Maps, you do not exist to local searchers. We setup, verify, and fully optimize your Google Business profile. This includes local keywords targeting Alexandria and other Egyptian cities, review solicitation setup, operating hours, cover photos, and seamless routing directions.',
-      ar: 'إذا لم يكن مشروعك على خرائط جوجل، فأنت غير مرئي لعملائك. نقوم بإنشاء وتفعيل وتحسين ملف جوجل للأعمال بالكامل، مع التركيز على الكلمات الأكثر بحثاً في الإسكندرية ومصر لجلب الزوار مباشرة إلى باب محلك.'
+      en: 'If your business is not on Google Maps, you do not exist to local searchers. We setup, verify, and fully optimize your Google Business profile. This includes local keywords targeting your city and across Egypt, review solicitation setup, operating hours, cover photos, and seamless routing directions.',
+      ar: 'إذا لم يكن مشروعك على خرائط جوجل، فأنت غير مرئي لعملائك. نقوم بإنشاء وتفعيل وتحسين ملف جوجل للأعمال بالكامل، مع التركيز على الكلمات الأكثر بحثاً في مدينتك وكل مصر لجلب الزوار مباشرة إلى باب محلك.'
     },
     icon: 'MapPin'
   },
@@ -83,8 +83,8 @@ export const values: ValuePoint[] = [
       ar: 'خبرة وفهم للسوق المحلي'
     },
     description: {
-      en: 'Based in Alexandria. We understand exactly how Egyptian buyers behave, search, and decide online.',
-      ar: 'مقرنا الإسكندرية. نفهم تماماً سلوك المستهلك المصري، كيفية بحثه، وما هي العوامل التي تدفعه للشراء والاتصال.'
+      en: 'Rooted in Egypt. We understand exactly how Egyptian buyers behave, search, and decide online.',
+      ar: 'جذورنا في مصر. نفهم تماماً سلوك المستهلك المصري، كيفية بحثه، وما هي العوامل التي تدفعه للشراء والاتصال.'
     },
     icon: 'Compass'
   },
@@ -153,8 +153,8 @@ export const portfolios: PortfolioItem[] = [
       ar: 'مطاعم وضيافة راقية'
     },
     industry: {
-      en: 'Fresh Seafood · Corniche El-Nil, Alexandria',
-      ar: 'مأكولات بحرية طازجة · كورنيش النيل'
+      en: 'Fresh Seafood · Mediterranean Waterfront',
+      ar: 'مأكولات بحرية طازجة · على الواجهة البحرية'
     },
     image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80',
     url: '/demos/corniche-house.html'
@@ -170,8 +170,8 @@ export const portfolios: PortfolioItem[] = [
       ar: 'تجزئة فاخرة وتراث عريق'
     },
     industry: {
-      en: 'Attar & Oud · Al-Attarin, Alexandria',
-      ar: 'عطور وعود · حي العطارين، الإسكندرية'
+      en: 'Attar & Oud · Heritage Perfumery',
+      ar: 'عطور وعود · عطارة عريقة'
     },
     image: 'https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=800&q=80',
     url: '/demos/andalus-perfumes.html'
@@ -187,8 +187,8 @@ export const portfolios: PortfolioItem[] = [
       ar: 'وكالة عقارية'
     },
     industry: {
-      en: 'Luxury Property · Smouha, Alexandria',
-      ar: 'عقارات فاخرة · سموحة، الإسكندرية'
+      en: 'Luxury Property · Premium Districts',
+      ar: 'عقارات فاخرة · أرقى الأحياء'
     },
     image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80',
     url: '/demos/prestige-realty.html'
@@ -204,8 +204,8 @@ export const portfolios: PortfolioItem[] = [
       ar: 'رياضة وصحة'
     },
     industry: {
-      en: 'Premium Gym · Smouha, Alexandria',
-      ar: 'صالة رياضية فاخرة · سموحة'
+      en: 'Premium Gym · 24/7 Fitness Club',
+      ar: 'صالة رياضية فاخرة · ناد مفتوح ٢٤ ساعة'
     },
     image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80',
     url: '/demos/stella-fitness.html'
@@ -224,8 +224,8 @@ export const testimonials: TestimonialItem[] = [
       ar: 'مؤسس ومدير عام'
     },
     business: {
-      en: 'Alexandria Sea Harvest Restaurant',
-      ar: 'مطعم سوق سمك الإسكندرية'
+      en: 'Sea Harvest Restaurant',
+      ar: 'مطعم سي هارفست'
     },
     content: {
       en: 'Arcadia Rise rebuilt our restaurant’s digital face. Translating our fresh fish display to an elegant online booking catalog combined with Google Maps optimization literally doubled our physical walk-ins in under two weeks. Unbelievable return on investment!',
@@ -264,8 +264,8 @@ export const testimonials: TestimonialItem[] = [
       ar: 'طبيبة ومديرة المركز'
     },
     business: {
-      en: 'Al-Amal Smouha Dental Center',
-      ar: 'مركز الأمل لطب الأسنان بسموحة'
+      en: 'Al-Amal Dental Center',
+      ar: 'مركز الأمل لطب الأسنان'
     },
     content: {
       en: 'Extremely professional and dedicated agency. They delivered a brilliant, pixel-perfect medical booking applet. It looks and functions like a premium international template but at flat rates that local Egyptian clinics can comfortably afford.',
@@ -283,8 +283,12 @@ export const pricing: PricingTier[] = [
       ar: 'الباقة التمهيدية (ستارتر)'
     },
     price: {
-      en: 'EGP 9,999',
-      ar: '٩,٩٩٩ ج.م'
+      en: 'EGP 14,999',
+      ar: '١٤,٩٩٩ ج.م'
+    },
+    originalPrice: {
+      en: 'EGP 19,999',
+      ar: '١٩,٩٩٩ ج.م'
     },
     period: {
       en: 'one-time fee',
@@ -325,8 +329,12 @@ export const pricing: PricingTier[] = [
       ar: 'باقة النمو الذهبية (جروس)'
     },
     price: {
-      en: 'EGP 14,999',
-      ar: '١٤,٩٩٩ ج.م'
+      en: 'EGP 24,999',
+      ar: '٢٤,٩٩٩ ج.م'
+    },
+    originalPrice: {
+      en: 'EGP 29,999',
+      ar: '٢٩,٩٩٩ ج.م'
     },
     period: {
       en: 'one-time fee',
@@ -342,7 +350,7 @@ export const pricing: PricingTier[] = [
         'Full Google Maps listing optimization with Local SEO',
         'Social media design integrations (FB, IG banners)',
         'Dual Bilingual Support (Instant Switch EN/AR)',
-        'SEO Optimized code to rank high in Alexandria queries',
+        'SEO Optimized code to rank high in local search queries',
         'Highly responsive custom gold-themed layouts',
         '1 year free custom domain registration (.com/.com.eg)',
         'Standard interactive contact dynamic form'
@@ -413,8 +421,8 @@ export const translationCopy = {
     brandName: 'ARCADIA RISE',
     tagline: 'Arcadia Rise',
     subTitle: 'Digital Agency',
-    alexandria: 'Alexandria, Egypt',
-    origin: 'Alexandria, Egypt',
+    alexandria: 'Egypt · Worldwide',
+    origin: 'Egypt',
     menu: {
       home: 'Home',
       services: 'Services',
@@ -439,7 +447,7 @@ export const translationCopy = {
     whyUs: {
       sectionTitle: 'Why Arcadia Rise',
       sectionSubtitle: 'DELIVERING VALUE',
-      desc: 'Formulated to meet the demands of Alexandrian businesses looking for flawless reputation, immediate ROI, and direct human communication.'
+      desc: 'Formulated to meet the demands of ambitious businesses looking for flawless reputation, immediate ROI, and direct human communication.'
     },
     process: {
       sectionTitle: 'How It Works',
@@ -449,13 +457,13 @@ export const translationCopy = {
     portfolio: {
       sectionTitle: 'What We Can Build For You',
       sectionSubtitle: 'DESIGN CONCEPTS · ALEXANDRIA',
-      desc: 'Four concept designs built for Alexandria businesses — each fully interactive. This is the standard we hold ourselves to.',
+      desc: 'Four concept designs built for ambitious businesses — each fully interactive. This is the standard we hold ourselves to.',
       viewDemo: 'Open Live Site'
     },
     testimonials: {
       sectionTitle: 'Client Voices',
       sectionSubtitle: 'CREDIBILITY ALIVE',
-      desc: 'Hear from original Alexandrian and Egyptian business owners who unlocked their digital scale with our high-end framework.'
+      desc: 'Hear from business owners who unlocked their digital scale with our high-end framework.'
     },
     pricing: {
       sectionTitle: 'Tiered Ecosystem Packages',
@@ -466,7 +474,7 @@ export const translationCopy = {
     about: {
       sectionTitle: 'About Arcadia Rise',
       sectionSubtitle: 'WHO WE ARE',
-      desc: 'Established on the shores of Alexandria, Egypt, our agency is fueled by a singular, passionate mission: to rescue small and medium businesses from digital invisibility. We believe that everyday Egyptian entrepreneurs — from legendary carpentry workshops to neighborhood seafood institutions — possess incredible craftsmanship that deserves to be honored visually online. We combine high-end European design discipline with local Alexandria hustle, building premium Web portals that put your business exactly where Egypt searches for it.'
+      desc: 'Rooted in Egypt, our agency is fueled by a singular, passionate mission: to rescue small and medium businesses from digital invisibility. We believe that everyday entrepreneurs — from legendary carpentry workshops to neighborhood seafood institutions — possess incredible craftsmanship that deserves to be honored visually online. We combine high-end European design discipline with sharp local hustle, building premium web portals that put your business exactly where your customers are searching.'
     },
     ctaBanner: {
       headline: 'Your competitors are online. Are you?',
@@ -475,7 +483,7 @@ export const translationCopy = {
     contact: {
       sectionTitle: 'Establish Contact',
       sectionSubtitle: 'GET IN TOUCH',
-      desc: 'Let us discuss your project. Visit our headquarters in Alexandria, Egypt or call or text us digitally worldwide.',
+      desc: 'Let us discuss your project. Reach us from anywhere — call or text us digitally, worldwide.',
       infoTitle: 'Headquarters & Social Realms',
       formTitle: 'Send a Message',
       formData: {
@@ -486,7 +494,7 @@ export const translationCopy = {
         send: 'Send Inquiry (WhatsApp Direct)',
         saving: 'Preparing Gateways...'
       },
-      locale: 'Alexandria, Egypt'
+      locale: 'Egypt · Worldwide'
     },
     footer: {
       rights: '© 2026 Arcadia Rise. All rights reserved. Crafted for the prominent Egyptian Hustle.',
@@ -497,8 +505,8 @@ export const translationCopy = {
     brandName: 'ARCADIA RISE',
     tagline: 'ARCADIA RISE',
     subTitle: 'وكالة رقمية',
-    alexandria: 'الإسكندرية، مصر',
-    origin: 'الإسكندرية، مصر',
+    alexandria: 'مصر · حول العالم',
+    origin: 'مصر',
     menu: {
       home: 'الرئيسية',
       services: 'خدماتنا',
@@ -532,8 +540,8 @@ export const translationCopy = {
     },
     portfolio: {
       sectionTitle: 'هكذا نبني لك',
-      sectionSubtitle: 'نماذج تصميم · الإسكندرية',
-      desc: 'أربعة نماذج تصميمية كاملة لأعمال إسكندرانية — كل منها تفاعلي وجاهز للاستخدام. هذا هو المستوى الذي نلتزم به.',
+      sectionSubtitle: 'نماذج تصميم',
+      desc: 'أربعة نماذج تصميمية كاملة لأعمال طموحة — كل منها تفاعلي وجاهز للاستخدام. هذا هو المستوى الذي نلتزم به.',
       viewDemo: 'افتح الموقع'
     },
     testimonials: {
@@ -550,7 +558,7 @@ export const translationCopy = {
     about: {
       sectionTitle: 'قصة ARCADIA RISE',
       sectionSubtitle: 'من نحن وما هي رسالتنا',
-      desc: 'تأسست ARCADIA RISE على شواطئ مدينة الإسكندرية الساحرة بهدف إنقاذ المشاريع والورش والخدمات المصرية من الاختفاء الرقمي. نؤمن بأن الحرفيين والشركات وبائعي التجزئة في مصر يمتلكون تميزاً فريداً وحرفية تستحق أن تظهر للعالم بأرقى شكل بصري ممكن. نمزج الانضباط والدقة في التصميمات الأوروبية الفخمة بالهستلة وبساطة الفكر السكندري لتقديم مواقع لا تقل فخامة عن الماركات السويسرية، مع تبسيط التجربة بالكامل لأصحاب الأعمال ليركزوا على زيادة المبيعات.'
+      desc: 'تأسست ARCADIA RISE بجذور مصرية وهدف واحد: إنقاذ المشاريع والورش والخدمات من الاختفاء الرقمي. نؤمن بأن الحرفيين والشركات وبائعي التجزئة يمتلكون تميزاً فريداً وحرفية تستحق أن تظهر للعالم بأرقى شكل بصري ممكن. نمزج الانضباط والدقة في التصميمات الأوروبية الفخمة بروح الإبداع المحلي لتقديم مواقع لا تقل فخامة عن الماركات العالمية، مع تبسيط التجربة بالكامل لأصحاب الأعمال ليركزوا على زيادة المبيعات.'
     },
     ctaBanner: {
       headline: 'كل منافسيك ظهروا للعلن على الإنترنت. ماذا تنتظر؟',
@@ -570,11 +578,11 @@ export const translationCopy = {
         send: 'أرسل طلب الاستشارة (واتساب مباشر)',
         saving: 'جاري تهيئة قنوات الاتصال...'
       },
-      locale: 'الإسكندرية، مصر'
+      locale: 'مصر · حول العالم'
     },
     footer: {
       rights: '© ٢٠٢٦ ARCADIA RISE. جميع الحقوق محفوظة لرواد وكفاح الأعمال بمصر وشعبها الأبي.',
-      disclaimer: 'تصميم وهندسة رقمية مفعمة بالذهب مستوحاة من رقي العمارة السكندرية التاريخية.'
+      disclaimer: 'تصميم وهندسة رقمية مفعمة بالذهب مستوحاة من رقي التراث العربي الأصيل.'
     }
   }
 };

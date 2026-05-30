@@ -57,7 +57,7 @@ export default function Footer({ currentLanguage }: FooterProps) {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-[10px] font-mono tracking-[0.3em] text-[#C9A87C]/40 uppercase mb-12 pl-[72px]"
           >
-            {currentLanguage === 'en' ? 'Digital Excellence Atelier · Alexandria, Egypt' : 'وكالة رقمية فاخرة · الإسكندرية، مصر'}
+            {currentLanguage === 'en' ? 'Digital Excellence Atelier · Egypt' : 'وكالة التميز الرقمي · مصر'}
           </motion.p>
 
           {/* Gold separator with glow */}

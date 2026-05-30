@@ -213,7 +213,7 @@ export default function Contact({ currentLanguage }: ContactProps) {
                   {
                     Icon: MapPin,
                     label: currentLanguage === 'en' ? 'Headquarters' : 'المقر',
-                    value: currentLanguage === 'en' ? 'Alexandria, Egypt' : 'الإسكندرية، مصر',
+                    value: currentLanguage === 'en' ? 'Egypt · Worldwide' : 'مصر · حول العالم',
                     href: null,
                   },
                   {

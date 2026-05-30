@@ -37,10 +37,10 @@ const faqs: { q: Record<Language, string>; a: Record<Language, string> }[] = [
     },
   },
   {
-    q: { en: 'Do you work with businesses outside Alexandria?', ar: 'هل تعملون مع أنشطة خارج الإسكندرية؟' },
+    q: { en: 'Do you work with businesses anywhere?', ar: 'هل تعملون مع الأنشطة في أي مكان؟' },
     a: {
-      en: 'Yes. We are based in Alexandria but serve businesses across Egypt and the Arab world. Everything runs remotely over WhatsApp and call — distance is never a barrier.',
-      ar: 'نعم. مقرنا الإسكندرية لكننا نخدم الأنشطة في كل مصر والوطن العربي. كل شيء يتم عن بُعد عبر واتساب والمكالمات — المسافة ليست عائقًا أبدًا.',
+      en: 'Yes. We are based in Egypt but serve businesses across the region and beyond. Everything runs remotely over WhatsApp and call — distance is never a barrier.',
+      ar: 'نعم. مقرنا مصر لكننا نخدم الأنشطة في المنطقة وخارجها. كل شيء يتم عن بُعد عبر واتساب والمكالمات — المسافة ليست عائقًا أبدًا.',
     },
   },
   {
