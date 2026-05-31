@@ -21,7 +21,7 @@ export default function Footer({ currentLanguage }: FooterProps) {
   ];
 
   return (
-    <footer className="bg-[#0A0A0A] relative overflow-hidden" id="main-footer">
+    <footer className="bg-[var(--bg)] relative overflow-hidden" id="main-footer">
 
       {/* Ambient bottom glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#8B6914]/6 rounded-full blur-[160px] pointer-events-none" />
@@ -79,7 +79,7 @@ export default function Footer({ currentLanguage }: FooterProps) {
                     e.preventDefault();
                     document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="text-[9px] font-mono tracking-[0.2em] uppercase text-[#F5F0E8]/30 hover:text-[#C9A87C] transition-colors duration-300 cursor-pointer"
+                  className="text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--text)]/30 hover:text-[#C9A87C] transition-colors duration-300 cursor-pointer"
                 >
                   {link.label}
                 </a>
@@ -88,7 +88,7 @@ export default function Footer({ currentLanguage }: FooterProps) {
 
             {/* Copyright + back to top */}
             <div className="flex items-center gap-6">
-              <p className="text-[9px] font-mono text-[#F5F0E8]/25 tracking-wider">
+              <p className="text-[9px] font-mono text-[var(--text)]/25 tracking-wider">
                 {t.footer.rights}
               </p>
 

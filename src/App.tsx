@@ -51,7 +51,7 @@ export default function App() {
       <IntroLoader onComplete={() => setIntroComplete(true)} />
 
       {/* Living painted backdrop — shifts palette on scroll, warps toward cursor */}
-      <div className="fixed inset-0 -z-10 bg-[#0A0A0A]" aria-hidden="true" />
+      <div className="fixed inset-0 -z-10 bg-[var(--bg)]" aria-hidden="true" />
       <Suspense fallback={null}>
         <LivingCanvas />
       </Suspense>
@@ -61,7 +61,7 @@ export default function App() {
           initial={{ opacity: 0 }}
           animate={{ opacity: introComplete ? 1 : 0 }}
           transition={{ duration: 0.6 }}
-          className="text-[#F5F0E8] min-h-screen selection:bg-[#8B6914] selection:text-[#F5F0E8] relative font-sans-luxury"
+          className="text-[var(--text)] min-h-screen selection:bg-[#8B6914] selection:text-[var(--text)] relative font-sans-luxury"
         >
           {/* Scroll progress bar */}
           <motion.div

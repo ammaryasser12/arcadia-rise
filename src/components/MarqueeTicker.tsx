@@ -30,7 +30,7 @@ export default function MarqueeTicker() {
         >
           {doubled.map((item, i) => (
             <div key={i} className="flex items-center gap-5 shrink-0 px-4">
-              <span className="text-xs font-mono tracking-[0.2em] uppercase text-[#F5F0E8]/35 whitespace-nowrap hover:text-[#C9A87C]/70 transition-colors duration-300">
+              <span className="text-xs font-mono tracking-[0.2em] uppercase text-[var(--text)]/35 whitespace-nowrap hover:text-[#C9A87C]/70 transition-colors duration-300">
                 {item}
               </span>
               <span className="text-[#C9A87C]/20 text-xs">✦</span>
@@ -42,7 +42,7 @@ export default function MarqueeTicker() {
   };
 
   return (
-    <div ref={ref} className="relative py-2 border-y border-[#C9A87C]/8 bg-[#0A0A0A] overflow-hidden select-none">
+    <div ref={ref} className="relative py-2 border-y border-[#C9A87C]/8 bg-[var(--bg)] overflow-hidden select-none">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute left-0 inset-y-0 w-24 bg-gradient-to-r from-[#0A0A0A] to-transparent z-10" />
         <div className="absolute right-0 inset-y-0 w-24 bg-gradient-to-l from-[#0A0A0A] to-transparent z-10" />

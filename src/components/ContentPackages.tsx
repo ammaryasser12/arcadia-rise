@@ -72,7 +72,7 @@ export default function ContentPackages({ currentLanguage }: ContentPackagesProp
   };
 
   return (
-    <section id="content" className="relative bg-[#0A0A0A] py-32 overflow-hidden">
+    <section id="content" className="relative bg-[var(--bg)] py-32 overflow-hidden">
       {/* ambient bloom */}
       <div className="absolute top-1/3 right-0 w-[600px] h-[500px] bg-[#8B6914]/5 rounded-full blur-[170px] pointer-events-none" />
 
@@ -99,7 +99,7 @@ export default function ContentPackages({ currentLanguage }: ContentPackagesProp
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             style={{ fontSize: 'clamp(38px, 5.5vw, 80px)' }}
-            className="font-serif font-bold text-[#F5F0E8] leading-[1.02] tracking-[-0.02em]"
+            className="font-serif font-bold text-[var(--text)] leading-[1.02] tracking-[-0.02em]"
           >
             {en ? (
               <>Monthly Content<br /><span className="text-shimmer">Packages.</span></>
@@ -113,7 +113,7 @@ export default function ContentPackages({ currentLanguage }: ContentPackagesProp
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.15 }}
           >
-            <p className="text-[#F5F0E8]/60 text-sm md:text-base leading-relaxed font-sans-luxury mb-4">
+            <p className="text-[var(--text)]/60 text-sm md:text-base leading-relaxed font-sans-luxury mb-4">
               {en
                 ? 'Beyond your website — professional content creation, photography, and social media management, tailored to any business type. Stay visible every single week without lifting a finger.'
                 : 'ما بعد الموقع — إنتاج محتوى احترافي وتصوير وإدارة كاملة لمنصات التواصل، مصمّمة لأي نوع نشاط. ابقَ حاضرًا كل أسبوع دون أي مجهود منك.'}
@@ -157,7 +157,7 @@ export default function ContentPackages({ currentLanguage }: ContentPackagesProp
               <div className="flex flex-col flex-1 p-8">
                 <div className="flex items-start justify-between mb-6">
                   <div>
-                    <h3 className={`font-serif font-bold leading-tight mb-1 ${tier.recommended ? 'text-shimmer' : 'text-[#F5F0E8]'}`} style={{ fontSize: 'clamp(24px, 2.5vw, 34px)' }}>
+                    <h3 className={`font-serif font-bold leading-tight mb-1 ${tier.recommended ? 'text-shimmer' : 'text-[var(--text)]'}`} style={{ fontSize: 'clamp(24px, 2.5vw, 34px)' }}>
                       {tier.name[currentLanguage]}
                     </h3>
                     <span className="text-[11px] font-mono tracking-wider text-[#C9A87C]/70 uppercase">
@@ -185,7 +185,7 @@ export default function ContentPackages({ currentLanguage }: ContentPackagesProp
                       <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 border ${tier.recommended ? 'bg-[#C9A87C]/20 border-[#C9A87C]/40' : 'bg-[#C9A87C]/8 border-[#C9A87C]/20'}`}>
                         <Check className="w-2.5 h-2.5 text-[#C9A87C]" />
                       </div>
-                      <span className="text-xs text-[#F5F0E8]/60 leading-relaxed font-sans-luxury">{f}</span>
+                      <span className="text-xs text-[var(--text)]/60 leading-relaxed font-sans-luxury">{f}</span>
                     </li>
                   ))}
                 </ul>

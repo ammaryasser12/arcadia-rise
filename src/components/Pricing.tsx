@@ -18,7 +18,7 @@ export default function Pricing({ currentLanguage }: PricingProps) {
   const bgY = useTransform(scrollYProgress, [0, 1], ['-6%', '6%']);
 
   return (
-    <section ref={ref} id="pricing" className="relative bg-[#0A0A0A] py-32 overflow-hidden">
+    <section ref={ref} id="pricing" className="relative bg-[var(--bg)] py-32 overflow-hidden">
 
       <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] rounded-full bg-[#8B6914]/5 blur-[180px]" />
@@ -45,7 +45,7 @@ export default function Pricing({ currentLanguage }: PricingProps) {
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
               style={{ fontSize: 'clamp(40px, 6vw, 88px)' }}
-              className="font-serif font-bold text-[#F5F0E8] leading-[0.92] tracking-[-0.03em]"
+              className="font-serif font-bold text-[var(--text)] leading-[0.92] tracking-[-0.03em]"
             >
               {t.pricing.sectionTitle}
             </motion.h2>
@@ -55,7 +55,7 @@ export default function Pricing({ currentLanguage }: PricingProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-[#F5F0E8]/50 text-sm md:text-base leading-relaxed font-sans-luxury self-end max-w-sm"
+            className="text-[var(--text)]/50 text-sm md:text-base leading-relaxed font-sans-luxury self-end max-w-sm"
           >
             {t.pricing.desc}
           </motion.p>
@@ -96,7 +96,7 @@ export default function Pricing({ currentLanguage }: PricingProps) {
                   <div className="flex items-start justify-between mb-4">
                     <h3
                       className={`font-serif font-bold leading-tight tracking-[-0.02em] ${
-                        tier.isRecommended ? 'text-shimmer' : 'text-[#F5F0E8]'
+                        tier.isRecommended ? 'text-shimmer' : 'text-[var(--text)]'
                       }`}
                       style={{ fontSize: 'clamp(22px, 2.5vw, 32px)' }}
                     >
@@ -106,7 +106,7 @@ export default function Pricing({ currentLanguage }: PricingProps) {
                       <Flame className="w-5 h-5 text-[#E8C97A] shrink-0 mt-1 animate-pulse" />
                     )}
                   </div>
-                  <p className="text-[#F5F0E8]/40 text-xs leading-relaxed font-sans-luxury">
+                  <p className="text-[var(--text)]/40 text-xs leading-relaxed font-sans-luxury">
                     {tier.description[currentLanguage]}
                   </p>
                 </div>
@@ -116,7 +116,7 @@ export default function Pricing({ currentLanguage }: PricingProps) {
                   {tier.originalPrice && (
                     <div className="flex items-center gap-2.5 mb-2">
                       {/* old price, struck through */}
-                      <span className="font-serif text-[#F5F0E8]/35 line-through decoration-[#C9A87C]/50 decoration-1 text-lg">
+                      <span className="font-serif text-[var(--text)]/35 line-through decoration-[#C9A87C]/50 decoration-1 text-lg">
                         {tier.originalPrice[currentLanguage]}
                       </span>
                       {/* limited-time pill */}
@@ -152,7 +152,7 @@ export default function Pricing({ currentLanguage }: PricingProps) {
                       }`}>
                         <Check className="w-2.5 h-2.5 text-[#C9A87C]" />
                       </div>
-                      <span className="text-xs text-[#F5F0E8]/60 leading-relaxed font-sans-luxury">{feat}</span>
+                      <span className="text-xs text-[var(--text)]/60 leading-relaxed font-sans-luxury">{feat}</span>
                     </li>
                   ))}
                 </ul>

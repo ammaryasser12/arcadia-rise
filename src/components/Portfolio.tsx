@@ -33,7 +33,7 @@ export default function Portfolio({ currentLanguage }: PortfolioProps) {
       ref={sectionRef}
       // The section is tall enough so scrolling through it animates the horizontal track
       style={{ height: `${100 + portfolios.length * 60}vh` }}
-      className="relative bg-[#0A0A0A]"
+      className="relative bg-[var(--bg)]"
     >
       {/* Sticky container that pins while parent scrolls */}
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
@@ -62,7 +62,7 @@ export default function Portfolio({ currentLanguage }: PortfolioProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-3xl md:text-5xl font-serif font-bold text-[#F5F0E8] leading-tight block"
+                  className="text-3xl md:text-5xl font-serif font-bold text-[var(--text)] leading-tight block"
                 >
                   {word}
                 </motion.span>
@@ -74,7 +74,7 @@ export default function Portfolio({ currentLanguage }: PortfolioProps) {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="hidden md:block text-sm text-[#F5F0E8]/45 max-w-[280px] text-right font-sans-luxury leading-relaxed"
+            className="hidden md:block text-sm text-[var(--text)]/45 max-w-[280px] text-right font-sans-luxury leading-relaxed"
           >
             {t.portfolio.desc}
           </motion.p>
@@ -131,10 +131,10 @@ export default function Portfolio({ currentLanguage }: PortfolioProps) {
                     <span className="inline-block px-2.5 py-1 rounded bg-[#C9A87C]/12 border border-[#C9A87C]/25 text-[9px] font-mono tracking-widest text-[#E8C97A] uppercase mb-3">
                       {item.category[currentLanguage]}
                     </span>
-                    <h3 className="text-2xl font-serif font-bold text-[#F5F0E8] mb-2 leading-tight">
+                    <h3 className="text-2xl font-serif font-bold text-[var(--text)] mb-2 leading-tight">
                       {item.title[currentLanguage]}
                     </h3>
-                    <p className="text-xs text-[#F5F0E8]/55 mb-5 font-sans-luxury flex items-center gap-1.5">
+                    <p className="text-xs text-[var(--text)]/55 mb-5 font-sans-luxury flex items-center gap-1.5">
                       <Globe className="w-3 h-3 text-[#C9A87C]" />
                       {item.industry[currentLanguage]}
                     </p>
@@ -143,7 +143,7 @@ export default function Portfolio({ currentLanguage }: PortfolioProps) {
                         href={item.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#E8C97A] hover:text-[#F5F0E8] pb-1 border-b border-[#E8C97A]/40 hover:border-[#F5F0E8] transition-all duration-300"
+                        className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#E8C97A] hover:text-[var(--text)] pb-1 border-b border-[#E8C97A]/40 hover:border-[#F5F0E8] transition-all duration-300"
                         onClick={e => e.stopPropagation()}
                       >
                         <span>{t.portfolio.viewDemo}</span>
@@ -171,10 +171,10 @@ export default function Portfolio({ currentLanguage }: PortfolioProps) {
                 <ArrowUpRight className="w-6 h-6 text-[#C9A87C]" />
               </div>
               <div className="text-center px-8">
-                <p className="text-sm font-serif font-bold text-[#F5F0E8]/60 group-hover:text-[#E8C97A] transition-colors duration-300 mb-2">
+                <p className="text-sm font-serif font-bold text-[var(--text)]/60 group-hover:text-[#E8C97A] transition-colors duration-300 mb-2">
                   {currentLanguage === 'en' ? 'Your Project Here' : 'مشروعك هنا'}
                 </p>
-                <p className="text-xs text-[#F5F0E8]/30 font-sans-luxury">
+                <p className="text-xs text-[var(--text)]/30 font-sans-luxury">
                   {currentLanguage === 'en' ? 'Let\'s build something stunning' : 'لنبني شيئًا مذهلاً'}
                 </p>
               </div>

@@ -112,7 +112,7 @@ export default function Hero({ currentLanguage, introComplete }: HeroProps) {
                 animate={{ y: 0 }}
                 transition={{ duration: 1, delay: 0.15 + i * 0.13, ease: [0.76, 0, 0.24, 1] }}
                 className={`block font-serif font-bold tracking-[-0.03em] leading-[1.06] text-[clamp(52px,9.5vw,148px)] ${
-                  i === lines.length - 1 ? 'text-shimmer' : 'text-[#F5F0E8]'
+                  i === lines.length - 1 ? 'text-shimmer' : 'text-[var(--text)]'
                 }`}
               >
                 {line}
@@ -129,7 +129,7 @@ export default function Hero({ currentLanguage, introComplete }: HeroProps) {
             transition={{ duration: 0.8, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col sm:flex-row items-start sm:items-center gap-8 w-full max-w-4xl"
           >
-            <p className="text-[#F5F0E8]/55 text-sm md:text-base leading-relaxed max-w-sm font-sans-luxury">
+            <p className="text-[var(--text)]/55 text-sm md:text-base leading-relaxed max-w-sm font-sans-luxury">
               {t.hero.subheadline}
             </p>
 

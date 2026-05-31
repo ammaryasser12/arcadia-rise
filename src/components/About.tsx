@@ -34,7 +34,7 @@ export default function About({ currentLanguage }: AboutProps) {
   ];
 
   return (
-    <section ref={ref} id="about" className="relative bg-[#0D0D0D] overflow-hidden">
+    <section ref={ref} id="about" className="relative bg-[var(--bg-alt)] overflow-hidden">
 
       {/* Top ambient */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#8B6914]/5 rounded-full blur-[160px] pointer-events-none" />
@@ -100,7 +100,7 @@ export default function About({ currentLanguage }: AboutProps) {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <span
-              className="block font-serif font-bold text-[#F5F0E8] leading-[1.1] tracking-[-0.02em] mb-2"
+              className="block font-serif font-bold text-[var(--text)] leading-[1.1] tracking-[-0.02em] mb-2"
               style={{ fontSize: 'clamp(34px, 6vw, 88px)' }}
             >
               {currentLanguage === 'en' ? '"Built to put you' : '"وُجدنا لنضع'}
@@ -119,7 +119,7 @@ export default function About({ currentLanguage }: AboutProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="text-[#F5F0E8]/55 text-sm md:text-base leading-[1.9] font-sans-luxury max-w-2xl mx-auto mt-10"
+            className="text-[var(--text)]/55 text-sm md:text-base leading-[1.9] font-sans-luxury max-w-2xl mx-auto mt-10"
           >
             {t.about.desc}
           </motion.p>
@@ -153,7 +153,7 @@ export default function About({ currentLanguage }: AboutProps) {
                   <h4 className="text-[9px] font-mono tracking-[0.25em] text-[#C9A87C] uppercase mb-2">
                     {pillar.title}
                   </h4>
-                  <p className="text-sm text-[#F5F0E8]/50 font-sans-luxury leading-relaxed">
+                  <p className="text-sm text-[var(--text)]/50 font-sans-luxury leading-relaxed">
                     {pillar.body}
                   </p>
                 </div>

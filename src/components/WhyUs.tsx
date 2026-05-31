@@ -19,7 +19,7 @@ export default function WhyUs({ currentLanguage }: WhyUsProps) {
   const bgY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
 
   return (
-    <section ref={ref} id="why-us" className="relative bg-[#0D0D0D] py-32 overflow-hidden">
+    <section ref={ref} id="why-us" className="relative bg-[var(--bg-alt)] py-32 overflow-hidden">
 
       {/* Parallax background element */}
       <motion.div
@@ -54,7 +54,7 @@ export default function WhyUs({ currentLanguage }: WhyUsProps) {
                 viewport={{ once: true, margin: '-80px' }}
                 transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
                 style={{ fontSize: 'clamp(38px, 5.5vw, 80px)' }}
-                className="font-serif font-bold text-[#F5F0E8] leading-[0.95] tracking-[-0.03em]"
+                className="font-serif font-bold text-[var(--text)] leading-[0.95] tracking-[-0.03em]"
               >
                 {t.whyUs.sectionTitle}
               </motion.h2>
@@ -65,7 +65,7 @@ export default function WhyUs({ currentLanguage }: WhyUsProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-[#F5F0E8]/55 text-sm md:text-base leading-relaxed mb-12 max-w-md font-sans-luxury"
+              className="text-[var(--text)]/55 text-sm md:text-base leading-relaxed mb-12 max-w-md font-sans-luxury"
             >
               {t.whyUs.desc}
             </motion.p>
@@ -83,7 +83,7 @@ export default function WhyUs({ currentLanguage }: WhyUsProps) {
                 <div className="text-[10px] font-mono tracking-wider text-[#C9A87C] uppercase">
                   {currentLanguage === 'en' ? 'Verified Egyptian Agency' : 'وكالة مصرية موثقة'}
                 </div>
-                <div className="text-[9px] font-mono text-[#F5F0E8]/30 mt-0.5">
+                <div className="text-[9px] font-mono text-[var(--text)]/30 mt-0.5">
                   {currentLanguage === 'en' ? 'Zero technical complexity for you' : 'لا تعقيد تقني من جانبك'}
                 </div>
               </div>
@@ -106,10 +106,10 @@ export default function WhyUs({ currentLanguage }: WhyUsProps) {
                   <div className="w-10 h-10 rounded-xl bg-[#C9A87C]/8 border border-[#C9A87C]/15 flex items-center justify-center mb-5 group-hover:bg-[#C9A87C]/15 group-hover:border-[#C9A87C]/35 transition-all duration-300">
                     <Icon className="w-5 h-5 text-[#E8C97A]" />
                   </div>
-                  <h3 className="text-sm font-serif font-bold text-[#F5F0E8] mb-2 group-hover:text-[#E8C97A] transition-colors duration-300">
+                  <h3 className="text-sm font-serif font-bold text-[var(--text)] mb-2 group-hover:text-[#E8C97A] transition-colors duration-300">
                     {val.title[currentLanguage]}
                   </h3>
-                  <p className="text-xs text-[#F5F0E8]/50 leading-relaxed font-sans-luxury">
+                  <p className="text-xs text-[var(--text)]/50 leading-relaxed font-sans-luxury">
                     {val.description[currentLanguage]}
                   </p>
                 </motion.div>

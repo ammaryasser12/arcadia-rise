@@ -59,7 +59,7 @@ export default function FAQ({ currentLanguage }: FAQProps) {
   return (
     <section id="faq" className="relative py-32 overflow-hidden">
       {/* faint scrim so copy stays legible over the living canvas */}
-      <div className="absolute inset-0 -z-[1] pointer-events-none bg-[#0A0A0A]/70" />
+      <div className="absolute inset-0 -z-[1] pointer-events-none bg-[var(--bg)]/70" />
 
       <div className="max-w-[1400px] mx-auto px-8 md:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
@@ -74,7 +74,7 @@ export default function FAQ({ currentLanguage }: FAQProps) {
                 </span>
               </div>
               <h2
-                className="font-serif font-bold text-[#F5F0E8] leading-[0.9] tracking-[-0.03em]"
+                className="font-serif font-bold text-[var(--text)] leading-[0.9] tracking-[-0.03em]"
                 style={{ fontSize: 'clamp(40px, 5vw, 76px)' }}
               >
                 {en ? (
@@ -83,7 +83,7 @@ export default function FAQ({ currentLanguage }: FAQProps) {
                   <>أسئلة،<br /><span className="text-shimmer">وإجابات.</span></>
                 )}
               </h2>
-              <p className="mt-6 text-sm leading-relaxed text-[#F5F0E8]/55 max-w-xs font-sans-luxury">
+              <p className="mt-6 text-sm leading-relaxed text-[var(--text)]/55 max-w-xs font-sans-luxury">
                 {en
                   ? 'Everything you might wonder before we begin. Still curious? A message away.'
                   : 'كل ما قد يدور في ذهنك قبل أن نبدأ. لديك سؤال آخر؟ نحن على بُعد رسالة.'}
@@ -111,7 +111,7 @@ export default function FAQ({ currentLanguage }: FAQProps) {
                       >
                         <span
                           className={`font-serif tracking-[-0.01em] transition-colors duration-300 ${
-                            isOpen ? 'text-[#E8C97A]' : 'text-[#F5F0E8] group-hover:text-[#E8C97A]'
+                            isOpen ? 'text-[#E8C97A]' : 'text-[var(--text)] group-hover:text-[#E8C97A]'
                           }`}
                           style={{ fontSize: 'clamp(19px, 2vw, 28px)' }}
                         >
@@ -136,7 +136,7 @@ export default function FAQ({ currentLanguage }: FAQProps) {
                             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                             className="overflow-hidden"
                           >
-                            <p className="pb-8 pr-12 text-sm md:text-[15px] leading-[1.8] text-[#F5F0E8]/60 font-sans-luxury max-w-2xl">
+                            <p className="pb-8 pr-12 text-sm md:text-[15px] leading-[1.8] text-[var(--text)]/60 font-sans-luxury max-w-2xl">
                               {item.a[currentLanguage]}
                             </p>
                           </motion.div>

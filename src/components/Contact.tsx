@@ -72,7 +72,7 @@ export default function Contact({ currentLanguage }: ContactProps) {
     <div id="contact">
 
       {/* ══ FULL-VIEWPORT CTA BANNER ══════════════════════════ */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#0A0A0A]">
+      <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[var(--bg)]">
 
         {/* Grain texture overlay */}
         <div
@@ -121,7 +121,7 @@ export default function Contact({ currentLanguage }: ContactProps) {
               >
                 <span
                   className={`block font-serif font-bold tracking-[-0.03em] leading-[1.0] ${
-                    i === 2 ? 'text-shimmer' : 'text-[#F5F0E8]'
+                    i === 2 ? 'text-shimmer' : 'text-[var(--text)]'
                   }`}
                   style={{ fontSize: 'clamp(44px, 7.5vw, 110px)' }}
                 >
@@ -158,7 +158,7 @@ export default function Contact({ currentLanguage }: ContactProps) {
       </section>
 
       {/* ══ CONTACT DETAILS + FORM ════════════════════════════ */}
-      <section className="bg-[#0A0A0A] py-32 px-8 md:px-16 relative">
+      <section className="bg-[var(--bg)] py-32 px-8 md:px-16 relative">
         <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-[#8B6914]/3 rounded-full blur-[130px] pointer-events-none" />
 
         <div className="max-w-[1400px] mx-auto relative z-10">
@@ -185,7 +185,7 @@ export default function Contact({ currentLanguage }: ContactProps) {
                   viewport={{ once: true, margin: '-80px' }}
                   transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
                   style={{ fontSize: 'clamp(34px, 5vw, 72px)' }}
-                  className="font-serif font-bold text-[#F5F0E8] leading-[0.92] tracking-[-0.03em]"
+                  className="font-serif font-bold text-[var(--text)] leading-[0.92] tracking-[-0.03em]"
                 >
                   {t.contact.sectionTitle}
                 </motion.h2>
@@ -196,7 +196,7 @@ export default function Contact({ currentLanguage }: ContactProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="text-[#F5F0E8]/50 text-sm leading-relaxed mb-12 max-w-sm font-sans-luxury"
+                className="text-[var(--text)]/50 text-sm leading-relaxed mb-12 max-w-sm font-sans-luxury"
               >
                 {t.contact.desc}
               </motion.p>
@@ -242,7 +242,7 @@ export default function Contact({ currentLanguage }: ContactProps) {
                       </div>
                       <div>
                         <span className="text-[9px] font-mono tracking-wider text-[#C9A87C]/55 uppercase block">{label}</span>
-                        <span className="text-xs font-semibold text-[#F5F0E8]/80 font-sans-luxury group-hover:text-[#E8C97A] transition-colors duration-300">{value}</span>
+                        <span className="text-xs font-semibold text-[var(--text)]/80 font-sans-luxury group-hover:text-[#E8C97A] transition-colors duration-300">{value}</span>
                       </div>
                     </div>
                   );
@@ -267,7 +267,7 @@ export default function Contact({ currentLanguage }: ContactProps) {
               <div className="absolute bottom-0 right-0 w-10 h-[1px] bg-gradient-to-l from-[#C9A87C]/30 to-transparent" />
               <div className="absolute bottom-0 right-0 w-[1px] h-10 bg-gradient-to-t from-[#C9A87C]/30 to-transparent" />
 
-              <h3 className="text-base font-serif font-bold text-[#F5F0E8] mb-8 flex items-center gap-3">
+              <h3 className="text-base font-serif font-bold text-[var(--text)] mb-8 flex items-center gap-3">
                 <span className="w-1 h-6 bg-gradient-to-b from-[#C9A87C] to-[#8B6914] rounded-full" />
                 {t.contact.formTitle}
               </h3>
@@ -289,7 +289,7 @@ export default function Contact({ currentLanguage }: ContactProps) {
                       value={(formData as any)[field.id]}
                       onChange={handleChange}
                       placeholder={field.placeholder}
-                      className="w-full px-4 py-3.5 bg-black/40 border border-[#C9A87C]/15 rounded-xl text-xs text-[#F5F0E8] placeholder-[#F5F0E8]/20 focus:border-[#C9A87C]/50 focus:outline-none transition-colors duration-300 font-sans-luxury"
+                      className="w-full px-4 py-3.5 bg-black/40 border border-[#C9A87C]/15 rounded-xl text-xs text-[var(--text)] placeholder-[#F5F0E8]/20 focus:border-[#C9A87C]/50 focus:outline-none transition-colors duration-300 font-sans-luxury"
                     />
                   </div>
                 ))}
@@ -303,7 +303,7 @@ export default function Contact({ currentLanguage }: ContactProps) {
                     name="package"
                     value={formData.package}
                     onChange={handleChange}
-                    className="w-full px-4 py-3.5 bg-black/40 border border-[#C9A87C]/15 rounded-xl text-xs text-[#F5F0E8] focus:border-[#C9A87C]/50 focus:outline-none transition-colors duration-300 font-sans-luxury"
+                    className="w-full px-4 py-3.5 bg-black/40 border border-[#C9A87C]/15 rounded-xl text-xs text-[var(--text)] focus:border-[#C9A87C]/50 focus:outline-none transition-colors duration-300 font-sans-luxury"
                     style={{ colorScheme: 'dark' }}
                   >
                     <option value="starter">{currentLanguage === 'en' ? 'Starter Package — EGP 9,999' : 'الباقة التمهيدية — ٩,٩٩٩ ج.م'}</option>
@@ -324,7 +324,7 @@ export default function Contact({ currentLanguage }: ContactProps) {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder={currentLanguage === 'en' ? 'What do you sell or build? Where are you based?' : 'ما طبيعة نشاطك التجاري؟ أين مقرك؟'}
-                    className="w-full px-4 py-3.5 bg-black/40 border border-[#C9A87C]/15 rounded-xl text-xs text-[#F5F0E8] placeholder-[#F5F0E8]/20 focus:border-[#C9A87C]/50 focus:outline-none transition-colors duration-300 resize-none font-sans-luxury"
+                    className="w-full px-4 py-3.5 bg-black/40 border border-[#C9A87C]/15 rounded-xl text-xs text-[var(--text)] placeholder-[#F5F0E8]/20 focus:border-[#C9A87C]/50 focus:outline-none transition-colors duration-300 resize-none font-sans-luxury"
                   />
                 </div>
 
@@ -373,10 +373,10 @@ export default function Contact({ currentLanguage }: ContactProps) {
                           <Check className="w-3.5 h-3.5 text-[#E8C97A]" />
                         </div>
                         <div>
-                          <p className="text-sm font-serif font-bold text-[#F5F0E8] mb-1">
+                          <p className="text-sm font-serif font-bold text-[var(--text)] mb-1">
                             {currentLanguage === 'en' ? 'Request received — thank you.' : 'تم استلام طلبك — شكرًا لك.'}
                           </p>
-                          <p className="text-xs leading-relaxed text-[#F5F0E8]/55 font-sans-luxury">
+                          <p className="text-xs leading-relaxed text-[var(--text)]/55 font-sans-luxury">
                             {currentLanguage === 'en'
                               ? 'Our team will reach out within 24 hours. Prefer to talk now? Message us on WhatsApp.'
                               : 'سيتواصل معك فريقنا خلال ٢٤ ساعة. تفضّل التحدث الآن؟ راسلنا على واتساب.'}

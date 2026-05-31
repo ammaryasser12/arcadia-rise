@@ -3,6 +3,7 @@ import { Menu, X, Globe, MapPin } from 'lucide-react';
 import { Language } from '../types';
 import { translationCopy } from '../data';
 import LanguageToggle from './LanguageToggle';
+import ThemeToggle from './ThemeToggle';
 import Logo from './Logo';
 
 interface HeaderProps {
@@ -49,7 +50,7 @@ export default function Header({ currentLanguage, onLanguageChange }: HeaderProp
       id="main-nav-header"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-black/80 backdrop-blur-md py-3 border-b border-[#C9A87C]/15 shadow-[0_4px_30px_rgba(0,0,0,0.8)]'
+          ? 'bg-[var(--bg)]/85 backdrop-blur-md py-3 border-b border-[#C9A87C]/15 shadow-[0_4px_30px_rgba(0,0,0,0.25)]'
           : 'bg-transparent py-5'
       }`}
     >
@@ -82,7 +83,7 @@ export default function Header({ currentLanguage, onLanguageChange }: HeaderProp
                 e.preventDefault();
                 handleNavClick(item.href);
               }}
-              className="text-xs font-semibold uppercase tracking-wider text-[#F5F0E8]/80 hover:text-[#E8C97A] transition-colors duration-300 relative py-1 group"
+              className="text-xs font-semibold uppercase tracking-wider text-[var(--text)]/80 hover:text-[#E8C97A] transition-colors duration-300 relative py-1 group"
             >
               {item.name}
               <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[#C9A87C] group-hover:w-full transition-all duration-300" />
@@ -92,6 +93,7 @@ export default function Header({ currentLanguage, onLanguageChange }: HeaderProp
 
         {/* Action Controls & Language Selector */}
         <div className="hidden sm:flex items-center gap-4" id="desktop-controls">
+          <ThemeToggle />
           <LanguageToggle currentLanguage={currentLanguage} onLanguageChange={onLanguageChange} />
           
           <a
@@ -107,6 +109,7 @@ export default function Header({ currentLanguage, onLanguageChange }: HeaderProp
 
         {/* Mobile controls & toggle */}
         <div className="flex sm:hidden items-center gap-3">
+          <ThemeToggle />
           <LanguageToggle currentLanguage={currentLanguage} onLanguageChange={onLanguageChange} />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -134,7 +137,7 @@ export default function Header({ currentLanguage, onLanguageChange }: HeaderProp
       {/* Mobile Drawer Overlay */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 top-[60px] bg-black/95 z-40 flex flex-col p-6 animate-fade-in sm:border-t sm:border-[#C9A87C]/15"
+          className="fixed inset-0 top-[60px] bg-[var(--bg)]/97 backdrop-blur-md z-40 flex flex-col p-6 animate-fade-in sm:border-t sm:border-[#C9A87C]/15"
           id="mobile-drawer-portal"
           style={{ height: 'calc(100vh - 60px)' }}
         >
@@ -147,7 +150,7 @@ export default function Header({ currentLanguage, onLanguageChange }: HeaderProp
                   e.preventDefault();
                   handleNavClick(item.href);
                 }}
-                className="text-lg font-serif font-medium tracking-wide text-[#F5F0E8] hover:text-[#E8C97A] transition-colors py-2 block"
+                className="text-lg font-serif font-medium tracking-wide text-[var(--text)] hover:text-[#E8C97A] transition-colors py-2 block"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 {item.name}

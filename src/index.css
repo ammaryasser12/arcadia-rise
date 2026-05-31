@@ -36,6 +36,27 @@
   --font-mono: "Helvetica Neue LT", ui-monospace, monospace;
 }
 
+/* ─── Theme tokens (light + dark) ────────────────────────
+   --bg / --bg-alt / --text drive the whole site. Gold stays
+   constant in both themes. Default = dark; light applies when
+   <html data-theme="light">. */
+:root {
+  --bg: #0A0A0A;
+  --bg-alt: #0D0D0D;
+  --text: #F5F0E8;
+  --glass-tint: 255,255,255;     /* white frost on dark */
+  --glass-edge: 255,255,255;
+  --canvas-ink: 0.039,0.039,0.039;
+}
+html[data-theme="light"] {
+  --bg: #FAF8F3;
+  --bg-alt: #F2EEE6;
+  --text: #1B1814;
+  --glass-tint: 255,255,255;     /* still white frost, lower alpha applied below */
+  --glass-edge: 255,255,255;
+  --canvas-ink: 0.961,0.945,0.918;
+}
+
 /* ─── Base ──────────────────────────────────────────── */
 
 html {
@@ -46,13 +67,28 @@ html {
 }
 
 body {
-  background-color: #0A0A0A;
-  color: #F5F0E8;
+  background-color: var(--bg);
+  color: var(--text);
   font-family: "Helvetica Neue LT", "Helvetica Neue", "Tajawal", sans-serif;
   font-weight: 400;
   letter-spacing: -0.005em;
   overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
+
+/* Light-mode liquid glass: darker frost + subtle shadow so it reads on white */
+html[data-theme="light"] .glass-panel,
+html[data-theme="light"] .liquid-glass {
+  background: linear-gradient(135deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.45) 100%);
+  border-color: rgba(139,105,20,0.18);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+html[data-theme="light"] .glass-panel::after,
+html[data-theme="light"] .liquid-glass::after {
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.5), transparent);
+}
+/* The living-canvas shader is built for dark; hide it in light mode (theme bg shows) */
+html[data-theme="light"] canvas[aria-hidden="true"] { display: none; }
 
 h1,h2,h3,h4 {
   font-family: "Bodoni Moda","Amiri",serif;

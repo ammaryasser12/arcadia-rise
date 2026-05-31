@@ -17,7 +17,7 @@ export default function HowItWorks({ currentLanguage }: HowItWorksProps) {
   const lineWidth = useTransform(scrollYProgress, [0.2, 0.8], ['0%', '100%']);
 
   return (
-    <section ref={ref} id="process" className="relative bg-[#0A0A0A] py-32 overflow-hidden">
+    <section ref={ref} id="process" className="relative bg-[var(--bg)] py-32 overflow-hidden">
 
       {/* Background */}
       <div className="absolute bottom-0 left-1/4 w-[600px] h-[300px] bg-[#8B6914]/4 rounded-full blur-[140px] pointer-events-none" />
@@ -43,7 +43,7 @@ export default function HowItWorks({ currentLanguage }: HowItWorksProps) {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
             style={{ fontSize: 'clamp(38px, 5.5vw, 80px)' }}
-            className="font-serif font-bold text-[#F5F0E8] leading-[0.95] tracking-[-0.03em]"
+            className="font-serif font-bold text-[var(--text)] leading-[0.95] tracking-[-0.03em]"
           >
             {t.process.sectionTitle}
           </motion.h2>
@@ -82,12 +82,12 @@ export default function HowItWorks({ currentLanguage }: HowItWorksProps) {
 
                 {/* Content */}
                 <h3
-                  className="font-serif font-bold text-[#F5F0E8] mb-4 leading-tight group-hover:text-[#E8C97A] transition-colors duration-300"
+                  className="font-serif font-bold text-[var(--text)] mb-4 leading-tight group-hover:text-[#E8C97A] transition-colors duration-300"
                   style={{ fontSize: 'clamp(20px, 2vw, 28px)' }}
                 >
                   {step.title[currentLanguage]}
                 </h3>
-                <p className="text-xs md:text-sm text-[#F5F0E8]/50 leading-relaxed font-sans-luxury">
+                <p className="text-xs md:text-sm text-[var(--text)]/50 leading-relaxed font-sans-luxury">
                   {step.description[currentLanguage]}
                 </p>
 
