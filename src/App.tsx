@@ -14,6 +14,7 @@ import WhyUs from './components/WhyUs';
 import HowItWorks from './components/HowItWorks';
 import Portfolio from './components/Portfolio';
 import Pricing from './components/Pricing';
+import ContentPackages from './components/ContentPackages';
 import About from './components/About';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
@@ -82,6 +83,7 @@ export default function App() {
             <HowItWorks currentLanguage={language} />
             <Portfolio currentLanguage={language} />
             <Pricing currentLanguage={language} />
+            <ContentPackages currentLanguage={language} />
             <About currentLanguage={language} />
             <FAQ currentLanguage={language} />
             <Contact currentLanguage={language} />

@@ -30,6 +30,7 @@ export default function Header({ currentLanguage, onLanguageChange }: HeaderProp
     { name: t.menu.process, href: '#process' },
     { name: t.menu.portfolio, href: '#portfolio' },
     { name: t.menu.pricing, href: '#pricing' },
+    { name: currentLanguage === 'en' ? 'Content' : 'المحتوى', href: '#content' },
     { name: t.menu.about, href: '#about' },
     { name: currentLanguage === 'en' ? 'FAQ' : 'الأسئلة', href: '#faq' },
     { name: t.menu.contact, href: '#contact' }

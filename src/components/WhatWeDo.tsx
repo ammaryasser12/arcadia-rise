@@ -10,6 +10,22 @@ interface WhatWeDoProps {
 
 const icons = [Terminal, MapPin, Share2];
 
+// "Perfect for" industry examples per service (open-ended, not limiting)
+const examples: Record<string, { en: string; ar: string }> = {
+  'web-design': {
+    en: 'Perfect for doctors, restaurants, startups, gyms, law firms — and any business that deserves to be found.',
+    ar: 'مثالي للأطباء والمطاعم والشركات الناشئة والصالات الرياضية والمكاتب — وأي نشاط يستحق أن يُرى.',
+  },
+  'google-business': {
+    en: 'Ideal for clinics, salons, cafes, retail shops — anyone with a location customers should find on the map.',
+    ar: 'مثالي للعيادات والصالونات والكافيهات والمتاجر — وكل من له مكان يبحث عنه العملاء على الخريطة.',
+  },
+  'social-media': {
+    en: 'Built for restaurants, gyms, e-commerce, personal brands — any business growing an audience online.',
+    ar: 'مصمم للمطاعم والصالات والمتاجر الإلكترونية والعلامات الشخصية — وكل نشاط يبني جمهوره على الإنترنت.',
+  },
+};
+
 // cursor-trailing preview image per service (verified relevant)
 const previews = [
   'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80',
@@ -152,9 +168,15 @@ export default function WhatWeDo({ currentLanguage }: WhatWeDoProps) {
                 >
                   <div className="pb-10 pl-24 grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                      <p className="text-[#F5F0E8]/65 text-sm md:text-base leading-relaxed font-sans-luxury mb-6">
+                      <p className="text-[#F5F0E8]/65 text-sm md:text-base leading-relaxed font-sans-luxury mb-4">
                         {service.description[currentLanguage]}
                       </p>
+                      {examples[service.id] && (
+                        <p className="text-[#C9A87C]/75 text-xs leading-relaxed font-sans-luxury mb-6 flex items-start gap-2">
+                          <span className="text-[#E8C97A] shrink-0">✦</span>
+                          <span>{examples[service.id][currentLanguage]}</span>
+                        </p>
+                      )}
                       <a
                         href="https://wa.me/201554347348"
                         target="_blank"
