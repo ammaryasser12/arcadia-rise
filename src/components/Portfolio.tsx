@@ -96,6 +96,9 @@ export default function Portfolio({ currentLanguage }: PortfolioProps) {
                 className="group relative rounded-2xl overflow-hidden glass-panel border border-[#C9A87C]/12 shrink-0 cursor-pointer"
                 style={{ width: CARD_WIDTH, height: 520 }}
                 whileHover={{ y: -8, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } }}
+                onClick={() => window.open(item.url, '_blank', 'noopener')}
+                role="link"
+                aria-label={`Open ${item.title[currentLanguage]} live site`}
               >
                 {/* Image */}
                 <img
@@ -117,8 +120,8 @@ export default function Portfolio({ currentLanguage }: PortfolioProps) {
                   {String(index + 1).padStart(2, '0')} / {String(portfolios.length).padStart(2, '0')}
                 </div>
 
-                {/* External link icon */}
-                <div className="absolute top-5 right-5 w-9 h-9 rounded-full bg-black/50 border border-[#C9A87C]/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 group-hover:border-[#C9A87C]/50">
+                {/* External link icon — always visible on mobile, hover-reveal on desktop */}
+                <div className="absolute top-5 right-5 w-9 h-9 rounded-full bg-black/50 border border-[#C9A87C]/40 flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300 z-20 sm:group-hover:border-[#C9A87C]/50">
                   <ArrowUpRight className="w-4 h-4 text-[#C9A87C]" />
                 </div>
 
@@ -135,7 +138,7 @@ export default function Portfolio({ currentLanguage }: PortfolioProps) {
                       <Globe className="w-3 h-3 text-[#C9A87C]" />
                       {item.industry[currentLanguage]}
                     </p>
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto">
+                    <div className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
                       <a
                         href={item.url}
                         target="_blank"

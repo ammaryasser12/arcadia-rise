@@ -7,6 +7,14 @@
   var canvas = document.getElementById('hero-canvas');
   if (!canvas || typeof THREE === 'undefined') return;
 
+  // Skip the WebGL shader on mobile / touch devices to avoid lag.
+  // Brighten the hero photo so the background isn't near-black without the paint.
+  if (window.matchMedia('(hover: none)').matches || window.innerWidth < 1024) {
+    var ph = document.querySelector('.hero-img, .hero-bg-img');
+    if (ph) { ph.style.opacity = '0.55'; ph.style.mixBlendMode = 'normal'; }
+    return;
+  }
+
   var cfg = window.LIVING_ACCENT || {};
   var A = cfg.a || [0.788, 0.659, 0.486];   // gold  #C9A87C
   var B = cfg.b || [0.545, 0.412, 0.078];   // bronze #8B6914

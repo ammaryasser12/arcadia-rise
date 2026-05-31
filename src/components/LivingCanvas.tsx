@@ -17,10 +17,16 @@ export default function LivingCanvas() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    // Skip the full-screen WebGL shader on mobile / touch devices — it's the
+    // main cause of mobile lag. The static #0A0A0A backdrop in App stays behind.
+    const isMobile =
+      window.matchMedia('(hover: none)').matches || window.innerWidth < 1024;
+    if (isMobile) return;
+
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
     renderer.setSize(innerWidth, innerHeight);
 
     const scene = new THREE.Scene();
