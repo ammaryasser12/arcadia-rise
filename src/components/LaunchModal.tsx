@@ -6,7 +6,7 @@ import { Language } from '../types';
 /* Formspark form for plan / package inquiries.
    You can create a SEPARATE form at formspark.io and paste its ID here,
    or reuse the consultation form ID. Endpoint = https://submit-form.com/<ID> */
-const PLAN_FORMSPARK_ID = 'gUlvec56S';
+const PLAN_FORMSPARK_ID = 'G9c7G3S4g';
 const PLAN_FORMSPARK_URL = `https://submit-form.com/${PLAN_FORMSPARK_ID}`;
 
 type Status = 'idle' | 'sending' | 'success';
