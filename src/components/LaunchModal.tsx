@@ -1,7 +1,15 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, User, Briefcase, Phone, Mail, Send, Sparkles } from 'lucide-react';
+import { X, User, Briefcase, Phone, Mail, Send, Sparkles, Check } from 'lucide-react';
 import { Language } from '../types';
+
+/* Formspark form for plan / package inquiries.
+   You can create a SEPARATE form at formspark.io and paste its ID here,
+   or reuse the consultation form ID. Endpoint = https://submit-form.com/<ID> */
+const PLAN_FORMSPARK_ID = 'gUlvec56S';
+const PLAN_FORMSPARK_URL = `https://submit-form.com/${PLAN_FORMSPARK_ID}`;
+
+type Status = 'idle' | 'sending' | 'success';
 
 interface LaunchModalProps {
   isOpen: boolean;
@@ -10,243 +18,183 @@ interface LaunchModalProps {
   plan: {
     id: string;
     name: { en: string; ar: string };
-    price: { en: string; ar: string };
+    price?: { en: string; ar: string };
   } | null;
 }
 
 export default function LaunchModal({ isOpen, onClose, currentLanguage, plan }: LaunchModalProps) {
-  const [formData, setFormData] = useState({
-    name: '',
-    business: '',
-    phone: '',
-    email: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({ name: '', business: '', phone: '', email: '' });
+  const [status, setStatus] = useState<Status>('idle');
 
   if (!isOpen || !plan) return null;
 
+  const isAr = currentLanguage === 'ar';
   const planName = plan.name[currentLanguage];
-  const planPrice = plan.price[currentLanguage];
+  const planPrice = plan.price ? plan.price[currentLanguage] : (isAr ? 'اشتراك شهري' : 'Monthly Retainer');
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const close = () => { setStatus('idle'); setFormData({ name: '', business: '', phone: '', email: '' }); onClose(); };
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    // Format WhatsApp details beautifully with clear structure and bold headers
-    const whatsAppMessage = 
-      `*ARCADIA RISE - PLAN ACQUISITION INQUIRY / طلب حجز باقة رقمية*\n` +
-      `==================================\n\n` +
-      `• *Chosen Plan / الباقة المختارة:*\n` +
-      `  ${plan.name.en} (${plan.name.ar})\n\n` +
-      `• *Price / السعر:*\n` +
-      `  ${plan.price.en} (${plan.price.ar})\n\n` +
-      `----------------------------------\n` +
-      `*CLIENT CONTACT PROFILE / ملف بيانات العميل:*\n` +
-      `----------------------------------\n\n` +
-      `• *Full Name / الاسم الكامل:*\n` +
-      `  ${formData.name}\n\n` +
-      `• *Business / Trade Name / اسم النشاط التجاري:*\n` +
-      `  ${formData.business}\n\n` +
-      `• *Mobile / WhatsApp / رقم الهاتف:*\n` +
-      `  ${formData.phone}\n\n` +
-      `• *Email Address / البريد الإلكتروني:*\n` +
-      `  ${formData.email}\n\n` +
-      `----------------------------------\n` +
-      `Generated electronically via ARCADIA RISE atelier.`;
-
-    const encodedMessage = encodeURIComponent(whatsAppMessage);
-    const whatsappLink = `https://api.whatsapp.com/send/?phone=201554347348&text=${encodedMessage}&type=phone_number&app_absent=0`;
-
-    // Redirect to WhatsApp immediately
-    setTimeout(() => {
-      window.open(whatsappLink, '_blank');
-      setIsSubmitting(false);
-      onClose();
-    }, 600);
+    if (status !== 'idle') return;
+    setStatus('sending');
+    try {
+      const res = await fetch(PLAN_FORMSPARK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          business: formData.business,
+          phone: formData.phone,
+          email: formData.email,
+          plan: `${plan.name.en} — ${plan.price ? plan.price.en : 'Monthly Retainer'}`,
+          _email: { subject: `Plan inquiry: ${plan.name.en} — ${formData.name}` },
+        }),
+      });
+      if (!res.ok) throw new Error(`Formspark ${res.status}`);
+      setStatus('success');
+    } catch (err) {
+      console.error('Plan inquiry failed:', err);
+      setStatus('idle');
+      alert(isAr ? 'حدث خطأ أثناء الإرسال. من فضلك حاول مرة أخرى.' : 'Something went wrong sending your request. Please try again.');
+    }
   };
 
-  const isAr = currentLanguage === 'ar';
+  const submitLabel =
+    status === 'sending' ? (isAr ? 'جارٍ الإرسال…' : 'Sending…')
+    : status === 'success' ? (isAr ? 'تم الإرسال' : 'Request Sent')
+    : (isAr ? 'إرسال الطلب' : 'Send Request');
 
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto select-none">
-        
-        {/* Backdrop overlay background blur */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={onClose}
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          onClick={close}
           className="fixed inset-0 bg-black/85 backdrop-blur-md cursor-pointer"
         />
 
-        {/* Modal Container layout */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 15 }}
           transition={{ duration: 0.35, ease: 'easeOut' }}
           className="relative w-full max-w-xl bg-[#0d0d0d] border-2 border-[#C9A87C]/30 rounded-2xl shadow-[0_0_50px_rgba(201,168,124,0.18)] overflow-hidden z-20 self-center"
-          id="launch-registration-modal"
         >
-          {/* Subtle upper light line gradient */}
           <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-[#8B6914] via-[#E8C97A] to-[#8B6914] z-10" />
-
-          {/* Golden radial background ambient light */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-80 bg-[#C9A87C]/5 rounded-full blur-[70px] pointer-events-none" />
 
-          {/* Close Header Trigger button */}
           <button
-            onClick={onClose}
+            onClick={close}
             className="absolute top-5 right-5 w-8 h-8 rounded-full border border-[#C9A87C]/20 hover:border-[#E8C97A] text-[#C9A87C]/60 hover:text-[#E8C97A] flex items-center justify-center transition-colors cursor-pointer z-20"
-            aria-label="Close modal"
+            aria-label="Close"
           >
             <X className="w-4 h-4" />
           </button>
 
-          {/* Header design detailing */}
-          <div className={`p-8 pb-3 border-b border-[#C9A87C]/10 text-left dir-auto`}>
-            <div className="flex items-center gap-2 text-[#E8C97A] mb-2 font-mono text-[9px] font-bold tracking-[0.2em] uppercase">
-              <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-              <span>{isAr ? 'بدء الحجز الرقمي الفاخر' : 'Start Luxury Acquisition'}</span>
-            </div>
-            
-            <h2 className="text-xl md:text-2xl font-serif font-bold text-[#F5F0E8] text-gold-glow mb-1 leading-normal">
-              {isAr ? 'تخصيص وإطلاق الهوية' : 'Tailor & Launch Plan'}
-            </h2>
-            
-            <p className="text-xs text-[#F5F0E8]/50 font-sans-luxury">
-              {isAr 
-                ? `الرجاء كتابة بياناتك للبدء في حجز باقة: ${planName}` 
-                : `Please write down your contact profile to request: ${planName}`
-              }
-            </p>
-
-            {/* Display selected plan badge details */}
-            <div className="mt-4 inline-flex items-center gap-2.5 bg-[#C9A87C]/10 border border-[#C9A87C]/20 rounded-full px-4 py-1.5">
-              <span className="w-2 h-2 rounded-full bg-[#E8C97A]" />
-              <span className="text-xs font-serif font-bold text-[#E8C97A] tracking-wider">
-                {planName}
-              </span>
-              <span className="text-[10px] text-[#F5F0E8]/40 font-mono">|</span>
-              <span className="text-[10px] font-mono font-medium text-[#F5F0E8]/80">
-                {planPrice}
-              </span>
-            </div>
-          </div>
-
-          {/* Form wrapper */}
-          <form onSubmit={handleSubmit} className="p-8 space-y-5 text-left dir-auto">
-            
-            {/* Field: Full Name */}
-            <div className="flex flex-col gap-2">
-              <label htmlFor="modal-name" className="text-[10px] font-mono tracking-wider text-[#C9A87C] uppercase flex items-center gap-1.5">
-                <User className="w-3 h-3 text-[#E8C97A]" />
-                <span>{isAr ? 'الاسم الكامل للعميل / الممثل' : 'Full Client / Representative Name'}</span>
-              </label>
-              <input
-                required
-                type="text"
-                id="modal-name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-black/50 border border-[#C9A87C]/15 focus:border-[#E8C97A] rounded-xl text-xs text-[#F5F0E8] placeholder-[#F5F0E8]/20 focus:outline-none transition-all focus:shadow-[0_0_10px_rgba(201,168,124,0.1)]"
-                placeholder={isAr ? 'الرجاء كتابة اسمك الكامل الثنائي أو الثلاثي' : 'e.g. Ammar Elrashidi'}
-              />
-            </div>
-
-            {/* Field: Business or Brand Name */}
-            <div className="flex flex-col gap-2">
-              <label htmlFor="modal-business" className="text-[10px] font-mono tracking-wider text-[#C9A87C] uppercase flex items-center gap-1.5">
-                <Briefcase className="w-3 h-3 text-[#E8C97A]" />
-                <span>{isAr ? 'اسم النشاط التجاري أو العلامة التجارية' : 'Business / Trade Name'}</span>
-              </label>
-              <input
-                required
-                type="text"
-                id="modal-business"
-                name="business"
-                value={formData.business}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-black/50 border border-[#C9A87C]/15 focus:border-[#E8C97A] rounded-xl text-xs text-[#F5F0E8] placeholder-[#F5F0E8]/20 focus:outline-none transition-all focus:shadow-[0_0_10px_rgba(201,168,124,0.1)]"
-                placeholder={isAr ? 'مثال: شركة النيل للتصدير أو المشرق للحديد' : 'e.g. Arcadia rise Clinic or Dental Atelier'}
-              />
-            </div>
-
-            {/* Field: Phone or WhatsApp */}
-            <div className="flex flex-col gap-2">
-              <label htmlFor="modal-phone" className="text-[10px] font-mono tracking-wider text-[#C9A87C] uppercase flex items-center gap-1.5">
-                <Phone className="w-3 h-3 text-[#E8C97A]" />
-                <span>{isAr ? 'رقم الهاتف / الواتساب الفعال' : 'Active Mobile / WhatsApp'}</span>
-              </label>
-              <input
-                required
-                type="tel"
-                id="modal-phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-black/50 border border-[#C9A87C]/15 focus:border-[#E8C97A] rounded-xl text-xs text-[#F5F0E8] placeholder-[#F5F0E8]/20 focus:outline-none transition-all focus:shadow-[0_0_10px_rgba(201,168,124,0.1)]"
-                placeholder={isAr ? 'مثال: 01554347348' : 'e.g. 01554347348'}
-              />
-            </div>
-
-            {/* Field: Email Address */}
-            <div className="flex flex-col gap-2">
-              <label htmlFor="modal-email" className="text-[10px] font-mono tracking-wider text-[#C9A87C] uppercase flex items-center gap-1.5">
-                <Mail className="w-3 h-3 text-[#E8C97A]" />
-                <span>{isAr ? 'البريد الإلكتروني للشركة / العميل' : 'Active Email Address'}</span>
-              </label>
-              <input
-                required
-                type="email"
-                id="modal-email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-black/50 border border-[#C9A87C]/15 focus:border-[#E8C97A] rounded-xl text-xs text-[#F5F0E8] placeholder-[#F5F0E8]/20 focus:outline-none transition-all focus:shadow-[0_0_10px_rgba(201,168,124,0.1)]"
-                placeholder={isAr ? 'example@domain.com' : 'e.g. example@business.com'}
-              />
-            </div>
-
-            {/* Action buttons footer layout */}
-            <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-[#C9A87C]/10">
-              
-              {/* Reset/Cancel Close button */}
-              <button
-                type="button"
-                onClick={onClose}
-                className="order-last sm:order-first w-full sm:w-1/3 py-3.5 rounded-xl border border-[#C9A87C]/20 hover:border-[#E8C97A] text-[#C9A87C]/70 hover:text-[#E8C97A] font-semibold text-xs tracking-widest uppercase transition-all"
+          {status === 'success' ? (
+            /* ── Success view ── */
+            <div className="p-10 text-center">
+              <motion.div
+                initial={{ scale: 0, rotate: -90 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 16 }}
+                className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#E8C97A]/12 border border-[#E8C97A]/40 flex items-center justify-center"
               >
-                {isAr ? 'إلغاء' : 'Cancel'}
-              </button>
-
-              {/* Submit CTA */}
+                <Check className="w-7 h-7 text-[#E8C97A]" />
+              </motion.div>
+              <h2 className="text-2xl font-serif font-bold text-[#F5F0E8] mb-3">
+                {isAr ? 'تم استلام طلبك' : 'Request Received'}
+              </h2>
+              <p className="text-sm text-[#F5F0E8]/55 font-sans-luxury leading-relaxed mb-8 max-w-sm mx-auto">
+                {isAr
+                  ? `شكرًا لك. سيتواصل معك فريقنا خلال ٢٤ ساعة بخصوص باقة ${planName}.`
+                  : `Thank you. Our team will reach out within 24 hours about your ${planName} request.`}
+              </p>
               <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full sm:w-2/3 py-3.5 rounded-xl bg-gradient-to-r from-[#8B6914] via-[#C9A87C] to-[#8B6914] hover:shadow-[0_0_20px_rgba(201,168,124,0.35)] text-black font-semibold text-xs tracking-widest uppercase flex items-center justify-center gap-2 cursor-pointer transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                id="modal-submit-button"
+                onClick={close}
+                className="px-8 py-3 rounded-xl border border-[#C9A87C]/30 hover:border-[#E8C97A] text-[#C9A87C] hover:text-[#E8C97A] font-mono text-xs tracking-widest uppercase transition-all cursor-pointer"
               >
-                <Send className="w-3.5 h-3.5" />
-                <span>
-                  {isSubmitting 
-                    ? (isAr ? 'جاري التحويل للواتساب...' : 'Opening WhatsApp...') 
-                    : (isAr ? 'إرسال للواتساب والبدء فوراً' : 'Send via WhatsApp Now')
-                  }
-                </span>
+                {isAr ? 'إغلاق' : 'Close'}
               </button>
             </div>
+          ) : (
+            <>
+              {/* Header */}
+              <div className="p-8 pb-3 border-b border-[#C9A87C]/10 text-left dir-auto">
+                <div className="flex items-center gap-2 text-[#E8C97A] mb-2 font-mono text-[9px] font-bold tracking-[0.2em] uppercase">
+                  <Sparkles className="w-3.5 h-3.5 animate-pulse" />
+                  <span>{isAr ? 'طلب باقة' : 'Request This Plan'}</span>
+                </div>
+                <h2 className="text-xl md:text-2xl font-serif font-bold text-[#F5F0E8] mb-1 leading-normal">
+                  {isAr ? 'أخبرنا عن مشروعك' : 'Tell Us About Your Business'}
+                </h2>
+                <p className="text-xs text-[#F5F0E8]/50 font-sans-luxury">
+                  {isAr ? 'املأ بياناتك وسنعاود التواصل معك خلال ٢٤ ساعة.' : 'Fill in your details and we will get back to you within 24 hours.'}
+                </p>
+                <div className="mt-4 inline-flex items-center gap-2.5 bg-[#C9A87C]/10 border border-[#C9A87C]/20 rounded-full px-4 py-1.5">
+                  <span className="w-2 h-2 rounded-full bg-[#E8C97A]" />
+                  <span className="text-xs font-serif font-bold text-[#E8C97A] tracking-wider">{planName}</span>
+                  <span className="text-[10px] text-[#F5F0E8]/40 font-mono">|</span>
+                  <span className="text-[10px] font-mono font-medium text-[#F5F0E8]/80">{planPrice}</span>
+                </div>
+              </div>
 
-          </form>
+              {/* Form */}
+              <form onSubmit={handleSubmit} className="p-8 space-y-5 text-left dir-auto">
+                {[
+                  { id: 'name', Icon: User, type: 'text', label: isAr ? 'الاسم الكامل' : 'Full Name', ph: isAr ? 'مثال: عمار الرشيدي' : 'e.g. Ammar Elrashidi' },
+                  { id: 'business', Icon: Briefcase, type: 'text', label: isAr ? 'اسم النشاط التجاري' : 'Business / Brand Name', ph: isAr ? 'مثال: عيادة النور' : 'e.g. Al-Noor Clinic' },
+                  { id: 'phone', Icon: Phone, type: 'tel', label: isAr ? 'رقم الهاتف / الواتساب' : 'Phone / WhatsApp', ph: 'e.g. 01554347348' },
+                  { id: 'email', Icon: Mail, type: 'email', label: isAr ? 'البريد الإلكتروني' : 'Email Address', ph: 'e.g. you@business.com' },
+                ].map(f => (
+                  <div key={f.id} className="flex flex-col gap-2">
+                    <label htmlFor={`modal-${f.id}`} className="text-[10px] font-mono tracking-wider text-[#C9A87C] uppercase flex items-center gap-1.5">
+                      <f.Icon className="w-3 h-3 text-[#E8C97A]" />
+                      <span>{f.label}</span>
+                    </label>
+                    <input
+                      required
+                      type={f.type}
+                      id={`modal-${f.id}`}
+                      name={f.id}
+                      value={(formData as any)[f.id]}
+                      onChange={handleInputChange}
+                      placeholder={f.ph}
+                      className="w-full px-4 py-3 bg-black/50 border border-[#C9A87C]/15 focus:border-[#E8C97A] rounded-xl text-xs text-[#F5F0E8] placeholder-[#F5F0E8]/20 focus:outline-none transition-all focus:shadow-[0_0_10px_rgba(201,168,124,0.1)]"
+                    />
+                  </div>
+                ))}
+
+                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-[#C9A87C]/10">
+                  <button
+                    type="button"
+                    onClick={close}
+                    className="order-last sm:order-first w-full sm:w-1/3 py-3.5 rounded-xl border border-[#C9A87C]/20 hover:border-[#E8C97A] text-[#C9A87C]/70 hover:text-[#E8C97A] font-semibold text-xs tracking-widest uppercase transition-all cursor-pointer"
+                  >
+                    {isAr ? 'إلغاء' : 'Cancel'}
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={status !== 'idle'}
+                    aria-busy={status === 'sending'}
+                    className="w-full sm:w-2/3 py-3.5 rounded-xl bg-gradient-to-r from-[#8B6914] via-[#C9A87C] to-[#8B6914] hover:shadow-[0_0_20px_rgba(201,168,124,0.35)] text-black font-semibold text-xs tracking-widest uppercase flex items-center justify-center gap-2 cursor-pointer transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {status === 'sending'
+                      ? <span className="w-3.5 h-3.5 rounded-full border-2 border-black/30 border-t-black/80 animate-spin" />
+                      : <Send className="w-3.5 h-3.5" />}
+                    <span>{submitLabel}</span>
+                  </button>
+                </div>
+              </form>
+            </>
+          )}
         </motion.div>
-
       </div>
     </AnimatePresence>
   );

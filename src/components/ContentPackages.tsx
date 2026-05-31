@@ -1,12 +1,12 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Check, Camera, Film, ArrowUpRight, Star } from 'lucide-react';
 import { Language } from '../types';
+import LaunchModal from './LaunchModal';
 
 interface ContentPackagesProps {
   currentLanguage: Language;
 }
-
-const WHATSAPP = 'https://wa.me/201554347348';
 
 const tiers = [
   {
@@ -59,6 +59,17 @@ const tiers = [
 
 export default function ContentPackages({ currentLanguage }: ContentPackagesProps) {
   const en = currentLanguage === 'en';
+  const [selected, setSelected] = useState<any | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openInquiry = (tier: typeof tiers[0]) => {
+    setSelected({
+      id: tier.id,
+      name: { en: `Content — ${tier.name.en}`, ar: `محتوى — ${tier.name.ar}` },
+      price: tier.cadence,
+    });
+    setModalOpen(true);
+  };
 
   return (
     <section id="content" className="relative bg-[#0A0A0A] py-32 overflow-hidden">
@@ -179,10 +190,9 @@ export default function ContentPackages({ currentLanguage }: ContentPackagesProp
                   ))}
                 </ul>
 
-                <a
-                  href={WHATSAPP}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={() => openInquiry(tier)}
                   className={`w-full flex items-center justify-center gap-2 py-4 rounded-xl text-xs font-mono tracking-[0.12em] uppercase transition-all duration-400 cursor-pointer group ${
                     tier.recommended
                       ? 'bg-gradient-to-r from-[#8B6914] via-[#C9A87C] to-[#8B6914] text-black hover:shadow-[0_0_28px_rgba(201,168,124,0.5)] hover:scale-[1.02]'
@@ -191,7 +201,7 @@ export default function ContentPackages({ currentLanguage }: ContentPackagesProp
                 >
                   <span>{en ? 'Get Started With Content' : 'ابدأ مع المحتوى'}</span>
                   <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
+                </button>
               </div>
 
               {tier.recommended && (
@@ -201,6 +211,13 @@ export default function ContentPackages({ currentLanguage }: ContentPackagesProp
           ))}
         </div>
       </div>
+
+      <LaunchModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        currentLanguage={currentLanguage}
+        plan={selected}
+      />
     </section>
   );
 }
