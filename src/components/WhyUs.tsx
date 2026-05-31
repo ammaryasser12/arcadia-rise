@@ -101,7 +101,7 @@ export default function WhyUs({ currentLanguage }: WhyUsProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="group p-6 rounded-2xl bg-white/[0.025] border border-[#C9A87C]/10 hover:border-[#C9A87C]/30 hover:bg-white/[0.04] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_16px_48px_rgba(0,0,0,0.4)]"
+                  className="liquid-glass group p-6 rounded-2xl border-transparent hover:border-[#C9A87C]/30 transition-all duration-400 hover:-translate-y-1.5"
                 >
                   <div className="w-10 h-10 rounded-xl bg-[#C9A87C]/8 border border-[#C9A87C]/15 flex items-center justify-center mb-5 group-hover:bg-[#C9A87C]/15 group-hover:border-[#C9A87C]/35 transition-all duration-300">
                     <Icon className="w-5 h-5 text-[#E8C97A]" />

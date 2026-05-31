@@ -141,7 +141,7 @@ export default function ContentPackages({ currentLanguage }: ContentPackagesProp
               className={`relative flex flex-col rounded-2xl overflow-hidden border transition-all duration-500 hover:-translate-y-2 ${
                 tier.recommended
                   ? 'border-[#C9A87C]/50 bg-gradient-to-b from-[#C9A87C]/8 via-black/60 to-black/80 shadow-[0_0_60px_rgba(201,168,124,0.18)]'
-                  : 'border-[#C9A87C]/10 bg-white/[0.025] hover:border-[#C9A87C]/25'
+                  : 'liquid-glass border-transparent hover:border-[#C9A87C]/25'
               }`}
             >
               {tier.recommended && (

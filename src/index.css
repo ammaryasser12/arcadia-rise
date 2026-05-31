@@ -106,18 +106,48 @@ h1,h2,h3,h4 {
 
 /* ─── Glass panel ────────────────────────────────────── */
 
-.glass-panel {
-  background: linear-gradient(135deg,rgba(255,255,255,0.04) 0%,rgba(255,255,255,0.01) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(201,168,124,0.14);
+/* Liquid glass — layered translucency, frosted blur+saturation, specular edge */
+.glass-panel, .liquid-glass {
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 38%, rgba(201,168,124,0.04) 100%);
+  backdrop-filter: blur(24px) saturate(165%);
+  -webkit-backdrop-filter: blur(24px) saturate(165%);
+  border: 1px solid rgba(255,255,255,0.10);
+  /* outer shadow + crisp inner top-highlight + soft inner base shadow = "liquid" depth */
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    inset 0 -1px 0 rgba(0,0,0,0.25);
+  overflow: hidden;
 }
-.glass-panel-glow { box-shadow: 0 8px 32px rgba(0,0,0,0.3) }
-.glass-panel-hover { transition: all 0.4s cubic-bezier(0.16,1,0.3,1) }
+/* specular highlight streak that sweeps across the surface */
+.glass-panel::after, .liquid-glass::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 50%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.10), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.9s cubic-bezier(0.16,1,0.3,1);
+  pointer-events: none;
+}
+.glass-panel:hover::after, .liquid-glass:hover::after { left: 130%; }
+
+.glass-panel-glow { box-shadow:
+    0 14px 50px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    inset 0 -1px 0 rgba(0,0,0,0.25),
+    0 0 30px rgba(201,168,124,0.06);
+}
+.glass-panel-hover { transition: all 0.45s cubic-bezier(0.16,1,0.3,1) }
 .glass-panel-hover:hover {
-  border-color: rgba(232,201,122,0.32);
-  box-shadow: 0 16px 48px rgba(201,168,124,0.15), 0 8px 32px rgba(0,0,0,0.4);
-  transform: translateY(-5px);
+  border-color: rgba(232,201,122,0.40);
+  box-shadow:
+    0 22px 60px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.30),
+    0 0 40px rgba(201,168,124,0.18);
+  transform: translateY(-6px);
 }
 
 /* ─── Keyframes ──────────────────────────────────────── */
