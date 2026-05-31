@@ -90,6 +90,21 @@ html[data-theme="light"] .liquid-glass::after {
 /* The living-canvas shader is built for dark; hide it in light mode (theme bg shows) */
 html[data-theme="light"] canvas[aria-hidden="true"] { display: none; }
 
+/* ── Light-mode gold readability ──────────────────────────
+   Light golds (#C9A87C / #E8C97A) and the shimmer gradient wash
+   out on white. Darken them so headings, prices, and labels
+   meet contrast. (Targets Tailwind's generated arbitrary classes.) */
+html[data-theme="light"] .text-shimmer {
+  background: linear-gradient(120deg, #5E4A12 0%, #927226 30%, #B6892B 50%, #927226 70%, #5E4A12 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+html[data-theme="light"] .text-\[\#E8C97A\] { color: #927226 !important; }
+html[data-theme="light"] .text-\[\#C9A87C\] { color: #7F6312 !important; }
+/* softer gold lines/dividers stay subtle but a touch darker for visibility */
+html[data-theme="light"] .bg-\[\#8B6914\]\/4,
+html[data-theme="light"] .bg-\[\#8B6914\]\/5 { opacity: 0.5; }
+
 h1,h2,h3,h4 {
   font-family: "Bodoni Moda","Amiri",serif;
 }
