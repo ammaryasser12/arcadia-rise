@@ -20,15 +20,15 @@ body{font-family:'Inter',sans-serif;background:var(--ink);color:var(--smoke);ove
 .progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,#8B6914,#E8C97A);z-index:100;width:0%;transform-origin:left;box-shadow:0 0 8px rgba(232,201,122,.6)}
 
 /* NAV */
-nav{position:fixed;top:0;inset-x:0;z-index:50;padding:24px 60px;display:flex;align-items:center;justify-content:space-between;transition:all .5s}
+nav{position:fixed;top:0;inset-x:0;z-index:50;padding:24px 60px;display:flex;align-items:center;justify-content:space-between;gap:40px;transition:all .5s}
 nav.scrolled{background:#0A0806;padding:16px 60px;border-bottom:1px solid rgba(201,168,124,.14);box-shadow:0 8px 30px rgba(0,0,0,.45)}
 .logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold);letter-spacing:.14em;text-decoration:none}
-.nav-links{display:flex;gap:38px;list-style:none;position:absolute;left:50%;transform:translateX(-50%)}
+.nav-links{display:flex;gap:34px;list-style:none}
 .nav-links a{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,239,229,.55);text-decoration:none;transition:color .25s;position:relative}
 .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
 .nav-links a:hover{color:var(--gold)}
 .nav-links a:hover::after{width:100%}
-.nav-btn{padding:10px 26px;border:1px solid rgba(201,168,124,.4);color:var(--gold);border-radius:100px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:.3s;cursor:pointer}
+.nav-btn{padding:10px 26px;border:1px solid rgba(201,168,124,.4);color:var(--gold);border-radius:100px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:.3s;cursor:pointer;white-space:nowrap}
 .nav-btn:hover{background:var(--gold);color:var(--ink)}
 
 /* HERO */

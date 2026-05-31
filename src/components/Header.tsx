@@ -3,7 +3,6 @@ import { Menu, X, Globe, MapPin } from 'lucide-react';
 import { Language } from '../types';
 import { translationCopy } from '../data';
 import LanguageToggle from './LanguageToggle';
-import ThemeToggle from './ThemeToggle';
 import Logo from './Logo';
 
 interface HeaderProps {
@@ -93,7 +92,6 @@ export default function Header({ currentLanguage, onLanguageChange }: HeaderProp
 
         {/* Action Controls & Language Selector */}
         <div className="hidden sm:flex items-center gap-4" id="desktop-controls">
-          <ThemeToggle />
           <LanguageToggle currentLanguage={currentLanguage} onLanguageChange={onLanguageChange} />
           
           <a
@@ -109,7 +107,6 @@ export default function Header({ currentLanguage, onLanguageChange }: HeaderProp
 
         {/* Mobile controls & toggle */}
         <div className="flex sm:hidden items-center gap-3">
-          <ThemeToggle />
           <LanguageToggle currentLanguage={currentLanguage} onLanguageChange={onLanguageChange} />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
