@@ -25,8 +25,8 @@ const faqs: { q: Record<Language, string>; a: Record<Language, string> }[] = [
   {
     q: { en: 'What does a project actually cost?', ar: 'كم تكلفة المشروع فعليًا؟' },
     a: {
-      en: 'Our packages start at EGP 9,999 one-time for a premium landing presence, with no hidden monthly retainers. Pick a tier above, or message us for a custom quote — pricing is always transparent.',
-      ar: 'تبدأ باقاتنا من ٩,٩٩٩ ج.م تُدفع لمرة واحدة لحضور رقمي فاخر، بدون رسوم شهرية مستترة. اختر باقة من الأعلى أو راسلنا لعرض مخصص — أسعارنا واضحة دائمًا.',
+      en: 'Our packages currently start at EGP 14,999 one-time (limited offer, down from 19,999) for a premium presence, with no hidden monthly retainers. Pick a tier above, or message us for a custom quote — pricing is always transparent.',
+      ar: 'تبدأ باقاتنا حاليًا من ١٤,٩٩٩ ج.م تُدفع لمرة واحدة (عرض محدود، بدلاً من ١٩,٩٩٩) لحضور رقمي فاخر، بدون رسوم شهرية مستترة. اختر باقة من الأعلى أو راسلنا لعرض مخصص — أسعارنا واضحة دائمًا.',
     },
   },
   {
